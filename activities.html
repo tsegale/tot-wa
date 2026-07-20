@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activities | Tot Wa Tours &amp; Safaris</title>
+<meta name="description" content="Half-day and full-day Namibia activities, from Etosha game drives to Twyfelfontein rock art and a Himba Living Museum visit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="routeMotif" viewBox="0 0 800 500">
+    <g fill="none" stroke="currentColor" stroke-width="1.4">
+      <path d="M-20,120 Q200,80 400,130 T820,110"/>
+      <path d="M-20,230 Q220,190 420,240 T820,220" stroke-opacity="0.7"/>
+      <path d="M-20,340 Q240,300 440,345 T820,330" stroke-opacity="0.45"/>
+      <path d="M40,420 C180,300 320,300 400,180 S560,60 720,90" stroke-dasharray="2 10" stroke-width="1.6"/>
+      <circle cx="40" cy="420" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="400" cy="180" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="720" cy="90" r="5" fill="currentColor" stroke="none"/>
+    </g>
+  </symbol>
+</svg>
+
+<header id="siteHeader">
+  <a href="index.html" class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+    Tot Wa
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="airport-transfers.html">Airport Transfers</a>
+    <a href="private-transfers.html">Private Transfers</a>
+    <a href="tours-safaris.html">Tours &amp; Safaris</a>
+    <a href="activities.html" class="active">Activities</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="#book" class="btn btn-primary">Book now</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<section class="page-hero">
+  <svg class="route-motif"><use href="#routeMotif"/></svg>
+  <div class="page-hero-inner">
+    <span class="label">Add to any itinerary</span>
+    <h1>What do you want to see next?</h1>
+    <p>Half-day and full-day excursions, booked on their own or slotted into a transfer or tour you've already got planned. Search by where you'll be.</p>
+  </div>
+</section>
+
+<div class="activity-search" id="book">
+  <div class="field-group">
+    <label for="ac-region">Region</label>
+    <select id="ac-region">
+      <option>Etosha</option>
+      <option>Damaraland / Twyfelfontein</option>
+      <option>Kunene / Kaokoland</option>
+      <option>Windhoek area</option>
+    </select>
+  </div>
+  <div class="field-tear"></div>
+  <div class="field-group">
+    <label for="ac-date">Date</label>
+    <input id="ac-date" type="date">
+  </div>
+  <div class="field-group" style="max-width:130px;">
+    <label for="ac-pax">People</label>
+    <input id="ac-pax" type="number" min="1" value="2">
+  </div>
+  <!-- EASYOTA PLACEHOLDER: submit hands off to EasyOTA (book.totwa.com iframe) -->
+  <button type="button" class="btn btn-primary">Check availability</button>
+</div>
+
+<section>
+  <div class="section-head">
+    <h2>Three worth building a day around.</h2>
+    <p>These slot into most of our tour routes, or stand alone if you're already in the area on a self-drive.</p>
+  </div>
+  <div class="activity-grid">
+    <div class="activity-card">
+      <!-- PHOTO SLOT: Etosha waterhole with game, 4:3 -->
+      <div class="photo-slot"><p class="photo-slot-note">Photo slot: Etosha waterhole</p></div>
+      <div class="activity-body">
+        <span class="activity-meta">Half or full day</span>
+        <h3>Etosha game drive</h3>
+        <p>Waterhole to waterhole across one of Africa's great game parks, with a driver who knows which ones are worth the wait.</p>
+        <span class="go">Add to itinerary &rarr;</span>
+      </div>
+    </div>
+    <div class="activity-card">
+      <!-- PHOTO SLOT: Twyfelfontein rock engravings close-up, 4:3 -->
+      <div class="photo-slot"><p class="photo-slot-note">Photo slot: Twyfelfontein engravings</p></div>
+      <div class="activity-body">
+        <span class="activity-meta">Half day</span>
+        <h3>Twyfelfontein rock art</h3>
+        <p>A guided walk through one of Southern Africa's largest concentrations of rock engravings, several thousand years old.</p>
+        <span class="go">Add to itinerary &rarr;</span>
+      </div>
+    </div>
+    <div class="activity-card">
+      <!-- PHOTO SLOT: Himba Living Museum visit, 4:3 -->
+      <div class="photo-slot"><p class="photo-slot-note">Photo slot: Himba Living Museum</p></div>
+      <div class="activity-body">
+        <span class="activity-meta">Half day</span>
+        <h3>Himba Living Museum</h3>
+        <p>A visit built around cultural exchange with the Himba community, on their terms, in the Kunene region.</p>
+        <span class="go">Add to itinerary &rarr;</span>
+      </div>
+    </div>
+    <div class="activity-card custom">
+      <div class="activity-body">
+        <h3>Not seeing it here?</h3>
+        <p>If it's in Namibia, there's a decent chance we can build a route to it. Tell us what you're after.</p>
+        <a href="contact.html" class="btn btn-ghost-dark" style="align-self:flex-start;">Ask us &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <h2>Better as part of a full route?</h2>
+  <a href="tours-safaris.html" class="btn btn-primary">See tours &amp; safaris</a>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+        Tot Wa
+      </div>
+      <p>Namibian-run transfers and tours. Windhoek-based, country-wide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="airport-transfers.html">Airport transfers</a>
+      <a href="private-transfers.html">Private transfers</a>
+      <a href="tours-safaris.html">Tours &amp; safaris</a>
+      <a href="activities.html">Activities</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About us</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <a href="tel:+264816008766">+264 81 600 8766</a>
+      <a href="mailto:info@tot-wa.com">info@tot-wa.com</a>
+      <a href="https://wa.me/264816008766">WhatsApp us</a>
+      <address>P.O. Box 9332 Eros, Windhoek, Namibia</address>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span id="year"></span> Tot Wa Tours &amp; Safaris</span>
+    <span>Windhoek, Namibia</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
