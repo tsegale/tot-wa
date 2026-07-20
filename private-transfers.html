@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Transfers | Tot Wa Tours &amp; Safaris</title>
+<meta name="description" content="Private transfers across Namibia, city to lodge, and cross-border to Botswana, South Africa and Zambia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="routeMotif" viewBox="0 0 800 500">
+    <g fill="none" stroke="currentColor" stroke-width="1.4">
+      <path d="M-20,120 Q200,80 400,130 T820,110"/>
+      <path d="M-20,230 Q220,190 420,240 T820,220" stroke-opacity="0.7"/>
+      <path d="M-20,340 Q240,300 440,345 T820,330" stroke-opacity="0.45"/>
+      <path d="M40,420 C180,300 320,300 400,180 S560,60 720,90" stroke-dasharray="2 10" stroke-width="1.6"/>
+      <circle cx="40" cy="420" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="400" cy="180" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="720" cy="90" r="5" fill="currentColor" stroke="none"/>
+    </g>
+  </symbol>
+</svg>
+
+<header id="siteHeader">
+  <a href="index.html" class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+    Tot Wa
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="airport-transfers.html">Airport Transfers</a>
+    <a href="private-transfers.html" class="active">Private Transfers</a>
+    <a href="tours-safaris.html">Tours &amp; Safaris</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="#book" class="btn btn-primary">Book now</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<section class="page-hero">
+  <svg class="route-motif"><use href="#routeMotif"/></svg>
+  <div class="page-hero-inner">
+    <span class="label">Beyond the airport road</span>
+    <h1>Point to point, or clear across a border.</h1>
+    <p>City to lodge, hotel to hotel, or a private run into Botswana, South Africa or Zambia. Same driver, same vehicle, for however far the trip actually goes.</p>
+    <div class="hero-actions">
+      <a href="#book" class="btn btn-primary">Check availability</a>
+      <a href="tours-safaris.html" class="btn btn-ghost-dark">Looking for a full itinerary?</a>
+    </div>
+  </div>
+</section>
+
+<section class="detail-block">
+  <div class="detail-photo">
+    <!-- PHOTO SLOT: vehicle parked at a lodge entrance, portrait 4:5 -->
+    <div class="photo-slot"><p class="photo-slot-note">Photo slot: lodge arrival</p></div>
+  </div>
+  <div class="detail-copy">
+    <h2>Within Namibia, door to door.</h2>
+    <p>Windhoek to Swakopmund, a lodge transfer ahead of a self-drive, or simply a private ride across the city when a taxi won't do. You book the route, we handle the driving.</p>
+    <ul>
+      <li>City to city, and city to lodge or reserve</li>
+      <li>One-way or return, scheduled around your plans</li>
+      <li>Can be paired with an airport transfer or a tour on either end</li>
+    </ul>
+  </div>
+</section>
+
+<section class="detail-block reverse">
+  <div class="detail-copy">
+    <h2>Across the border, paperwork included.</h2>
+    <p>We run private transfers into Botswana, South Africa and Zambia. Border crossings are planned into the route in advance, so the stop at the post is a formality, not a scramble.</p>
+    <ul>
+      <li>Botswana, including Kasane and the Chobe region</li>
+      <li>South Africa, northern border crossings</li>
+      <li>Zambia, including the Victoria Falls area</li>
+    </ul>
+  </div>
+  <div class="detail-photo">
+    <!-- PHOTO SLOT: border post or open cross-border highway, portrait 4:5 -->
+    <div class="photo-slot"><p class="photo-slot-note">Photo slot: cross-border route</p></div>
+  </div>
+</section>
+
+<section class="hero" style="padding-bottom:0;">
+  <div class="hero-top" style="grid-template-columns:1fr; min-height:auto; padding-top:0;">
+    <div class="hero-copy" style="padding-bottom:5rem;">
+      <h2 style="font-family:var(--display); font-weight:600; font-style:italic; color:var(--sand); font-size:clamp(2rem,4vw,2.8rem); margin-bottom:1rem;">Book a private transfer</h2>
+      <p class="hero-lede">Tell us the route, we'll confirm the vehicle and driver.</p>
+    </div>
+  </div>
+  <div class="ticket-wrap" id="book" style="margin-top:-4.5rem;">
+    <div class="ticket">
+      <div class="ticket-tabs">
+        <span class="tab-label">Route type</span>
+        <button class="tab-btn active" data-target="fields-domestic">Within Namibia</button>
+        <button class="tab-btn" data-target="fields-crossborder">Cross-border</button>
+      </div>
+      <div class="ticket-fields">
+        <div class="field-set active" id="fields-domestic">
+          <div class="field-group">
+            <label for="pd-from">From</label>
+            <input id="pd-from" type="text" placeholder="City, hotel or lodge">
+          </div>
+          <div class="field-tear"></div>
+          <div class="field-group">
+            <label for="pd-to">To</label>
+            <input id="pd-to" type="text" placeholder="Where to?">
+          </div>
+          <div class="field-tear"></div>
+          <div class="field-group">
+            <label for="pd-date">Date</label>
+            <input id="pd-date" type="date">
+          </div>
+          <div class="field-group" style="max-width:110px;">
+            <label for="pd-pax">Passengers</label>
+            <input id="pd-pax" type="number" min="1" value="2">
+          </div>
+          <!-- EASYOTA PLACEHOLDER: submit hands off to EasyOTA (book.totwa.com iframe) -->
+          <button type="button" class="btn btn-primary">Check availability</button>
+        </div>
+        <div class="field-set" id="fields-crossborder">
+          <div class="field-group">
+            <label for="pc-from">From</label>
+            <input id="pc-from" type="text" placeholder="City, hotel or lodge">
+          </div>
+          <div class="field-tear"></div>
+          <div class="field-group">
+            <label for="pc-country">Destination country</label>
+            <select id="pc-country">
+              <option>Botswana</option>
+              <option>South Africa</option>
+              <option>Zambia</option>
+            </select>
+          </div>
+          <div class="field-tear"></div>
+          <div class="field-group">
+            <label for="pc-date">Date</label>
+            <input id="pc-date" type="date">
+          </div>
+          <div class="field-group" style="max-width:110px;">
+            <label for="pc-pax">Passengers</label>
+            <input id="pc-pax" type="number" min="1" value="2">
+          </div>
+          <!-- EASYOTA PLACEHOLDER: submit hands off to EasyOTA (book.totwa.com iframe) -->
+          <button type="button" class="btn btn-primary">Check availability</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <h2>Flying in first?</h2>
+  <a href="airport-transfers.html" class="btn btn-primary">Add an airport transfer</a>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+        Tot Wa
+      </div>
+      <p>Namibian-run transfers and tours. Windhoek-based, country-wide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="airport-transfers.html">Airport transfers</a>
+      <a href="private-transfers.html">Private transfers</a>
+      <a href="tours-safaris.html">Tours &amp; safaris</a>
+      <a href="activities.html">Activities</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About us</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <a href="tel:+264816008766">+264 81 600 8766</a>
+      <a href="mailto:info@tot-wa.com">info@tot-wa.com</a>
+      <a href="https://wa.me/264816008766">WhatsApp us</a>
+      <address>P.O. Box 9332 Eros, Windhoek, Namibia</address>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span id="year"></span> Tot Wa Tours &amp; Safaris</span>
+    <span>Windhoek, Namibia</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
