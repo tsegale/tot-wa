@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Tot Wa Tours &amp; Safaris</title>
+<meta name="description" content="Get in touch with Tot Wa Tours & Safaris. Phone, WhatsApp, email and our Windhoek address.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="routeMotif" viewBox="0 0 800 500">
+    <g fill="none" stroke="currentColor" stroke-width="1.4">
+      <path d="M-20,120 Q200,80 400,130 T820,110"/>
+      <path d="M-20,230 Q220,190 420,240 T820,220" stroke-opacity="0.7"/>
+      <path d="M-20,340 Q240,300 440,345 T820,330" stroke-opacity="0.45"/>
+      <path d="M40,420 C180,300 320,300 400,180 S560,60 720,90" stroke-dasharray="2 10" stroke-width="1.6"/>
+      <circle cx="40" cy="420" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="400" cy="180" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="720" cy="90" r="5" fill="currentColor" stroke="none"/>
+    </g>
+  </symbol>
+</svg>
+
+<header id="siteHeader">
+  <a href="index.html" class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+    Tot Wa
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="airport-transfers.html">Airport Transfers</a>
+    <a href="private-transfers.html">Private Transfers</a>
+    <a href="tours-safaris.html">Tours &amp; Safaris</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="#book" class="btn btn-primary">Book now</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<section class="page-hero">
+  <svg class="route-motif"><use href="#routeMotif"/></svg>
+  <div class="page-hero-inner">
+    <span class="label">Let's talk</span>
+    <h1>Tell us where to.</h1>
+    <p>Phone, WhatsApp, email, or the form below, whichever's easiest. We're based in Windhoek and answer in the same time zone you're driving through.</p>
+  </div>
+</section>
+
+<section id="book">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2>Reach us directly</h2>
+      <div class="contact-line">
+        <span class="label-sm">Phone</span>
+        <a href="tel:+264816008766">+264 81 600 8766</a>
+      </div>
+      <div class="contact-line">
+        <span class="label-sm">WhatsApp</span>
+        <a href="https://wa.me/264816008766">wa.me/264816008766</a>
+      </div>
+      <div class="contact-line">
+        <span class="label-sm">Email</span>
+        <a href="mailto:info@tot-wa.com">info@tot-wa.com</a>
+      </div>
+      <div class="contact-line">
+        <span class="label-sm">Postal address</span>
+        <address>P.O. Box 9332 Eros, Windhoek, Namibia</address>
+      </div>
+    </div>
+
+    <div>
+      <h2 style="font-family:var(--display); font-weight:600; font-size:clamp(1.7rem,3vw,2.2rem); margin-bottom:1.4rem;">Or send us a message</h2>
+      <!-- FORM PLACEHOLDER: no backend wired up yet. JS below prevents the
+           default page reload and shows a confirmation note. Replace with a
+           real submit target (e.g. an email-forwarding endpoint) when ready. -->
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" type="text" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" type="email" name="email" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-interest">I'm asking about</label>
+            <select id="cf-interest" name="interest">
+              <option>Airport transfer</option>
+              <option>Private transfer</option>
+              <option>Tours &amp; safaris</option>
+              <option>Activities</option>
+              <option>Something custom</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cf-dates">Rough dates</label>
+            <input id="cf-dates" type="text" name="dates" placeholder="e.g. 12&ndash;20 September">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send message</button>
+        <p class="form-note" id="formNote" hidden>Message captured. No backend is wired up yet, this form doesn't send anywhere until we connect it. In the meantime, use the phone, WhatsApp or email above.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Find us</h2>
+    <p>Windhoek, Namibia.</p>
+  </div>
+  <!-- MAP PLACEHOLDER: embed a real Google Maps iframe (or equivalent) here
+       once an API key / embed URL is available. -->
+  <div class="map-slot">
+    <p class="photo-slot-note" style="border:none;">Map embed slot: Windhoek office location</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+        Tot Wa
+      </div>
+      <p>Namibian-run transfers and tours. Windhoek-based, country-wide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="airport-transfers.html">Airport transfers</a>
+      <a href="private-transfers.html">Private transfers</a>
+      <a href="tours-safaris.html">Tours &amp; safaris</a>
+      <a href="activities.html">Activities</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About us</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <a href="tel:+264816008766">+264 81 600 8766</a>
+      <a href="mailto:info@tot-wa.com">info@tot-wa.com</a>
+      <a href="https://wa.me/264816008766">WhatsApp us</a>
+      <address>P.O. Box 9332 Eros, Windhoek, Namibia</address>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span id="year"></span> Tot Wa Tours &amp; Safaris</span>
+    <span>Windhoek, Namibia</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
