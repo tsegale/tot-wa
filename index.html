@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tot Wa Tours &amp; Safaris | Namibia, where to?</title>
+<meta name="description" content="Airport transfers, private transfers and guided safaris across Namibia, all run by one Windhoek-based operator.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Reusable flat, single-colour route/contour motif. No gradients: this is
+     the site's recurring signature graphic, standing in for the gradient
+     horizon device used in the earlier draft. -->
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="routeMotif" viewBox="0 0 800 500">
+    <g fill="none" stroke="currentColor" stroke-width="1.4">
+      <path d="M-20,120 Q200,80 400,130 T820,110"/>
+      <path d="M-20,230 Q220,190 420,240 T820,220" stroke-opacity="0.7"/>
+      <path d="M-20,340 Q240,300 440,345 T820,330" stroke-opacity="0.45"/>
+      <path d="M40,420 C180,300 320,300 400,180 S560,60 720,90" stroke-dasharray="2 10" stroke-width="1.6"/>
+      <circle cx="40" cy="420" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="400" cy="180" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="720" cy="90" r="5" fill="currentColor" stroke="none"/>
+    </g>
+  </symbol>
+</svg>
+
+<header id="siteHeader">
+  <a href="index.html" class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+    Tot Wa
+  </a>
+  <nav class="links" id="navLinks">
+    <a href="airport-transfers.html">Airport Transfers</a>
+    <a href="private-transfers.html">Private Transfers</a>
+    <a href="tours-safaris.html">Tours &amp; Safaris</a>
+    <a href="activities.html">Activities</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="#book" class="btn btn-primary">Book now</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-copy">
+      <p class="hero-kicker">In Afrikaans, <strong>"tot wa"</strong> means one thing: where to?</p>
+      <h1>Where to?</h1>
+      <p class="hero-lede">That's the only question we ask before the engine starts. Airport runs, private transfers and full guided safaris across Namibia, planned and driven by the same operator from start to finish.</p>
+      <div class="hero-actions">
+        <a href="#book" class="btn btn-primary">Check availability</a>
+        <a href="tours-safaris.html" class="btn btn-ghost-dark">See tours &amp; safaris</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <svg class="route-motif" style="color:var(--sand)"><use href="#routeMotif"/></svg>
+      <!-- PHOTO SLOT: Tot Wa vehicle on an open Namibian road, golden hour,
+           road running toward the horizon. Suggested crop ~1000x1300 portrait. -->
+      <div class="photo-slot">
+        <p class="photo-slot-note">Photo slot: open road, golden hour<br>Suggested crop 1000&times;1300</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticket-wrap" id="book">
+    <div class="ticket">
+      <div class="ticket-tabs">
+        <span class="tab-label">I need a</span>
+        <button class="tab-btn active" data-target="fields-transfer">Transfer</button>
+        <button class="tab-btn" data-target="fields-tour">Tour &amp; Safari</button>
+      </div>
+      <div class="ticket-fields">
+        <div class="field-set active" id="fields-transfer">
+          <div class="field-group">
+            <label for="tf-from">Pickup</label>
+            <select id="tf-from">
+              <option>Hosea Kutako Intl. (HKIA)</option>
+              <option>Eros Airport</option>
+              <option>Windhoek hotel or lodge</option>
+              <option>Other, ask us</option>
+            </select>
+          </div>
+          <div class="field-tear"></div>
+          <div class="field-group">
+            <label for="tf-to">Drop-off</label>
+            <input id="tf-to" type="text" placeholder="Where to?">
+          </div>
+          <div class="field-tear"></div>
+          <div class="field-group">
+            <label for="tf-date">Date</label>
+            <input id="tf-date" type="date">
+          </div>
+          <div class="field-group" style="max-width:110px;">
+            <label for="tf-pax">Passengers</label>
+            <input id="tf-pax" type="number" min="1" value="2">
+          </div>
+          <!-- EASYOTA PLACEHOLDER: submit hands off to EasyOTA (book.totwa.com iframe) -->
+          <button type="button" class="btn btn-primary">Check availability</button>
+        </div>
+        <div class="field-set" id="fields-tour">
+          <div class="field-group">
+            <label for="tr-route">Route</label>
+            <select id="tr-route">
+              <option>5-Day Southbound</option>
+              <option>5-Day Northbound</option>
+              <option>7-Day Southbound</option>
+              <option>7-Day Northbound</option>
+              <option>10-Day Namibia's Best</option>
+              <option>Custom, build my own</option>
+            </select>
+          </div>
+          <div class="field-tear"></div>
+          <div class="field-group">
+            <label for="tr-date">Departure</label>
+            <input id="tr-date" type="date">
+          </div>
+          <div class="field-group" style="max-width:110px;">
+            <label for="tr-pax">Travelers</label>
+            <input id="tr-pax" type="number" min="1" value="2">
+          </div>
+          <!-- EASYOTA PLACEHOLDER: submit hands off to EasyOTA (book.totwa.com iframe) -->
+          <button type="button" class="btn btn-primary">Check availability</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="section-head">
+    <h2>Two ways to arrive. One way to explore.</h2>
+    <p>Transfers get you there on time. Tours and safaris are for once you're actually here.</p>
+  </div>
+  <div class="services-grid">
+    <a href="airport-transfers.html" class="transfer-card">
+      <svg class="route-motif"><use href="#routeMotif"/></svg>
+      <span class="tag">Since day one</span>
+      <h3>Airport transfers</h3>
+      <p>Met at arrivals every time, Hosea Kutako or Eros, one-way or return, whatever time your flight lands.</p>
+      <span class="go">View airport transfers &rarr;</span>
+    </a>
+    <a href="private-transfers.html" class="transfer-card">
+      <svg class="route-motif"><use href="#routeMotif"/></svg>
+      <span class="tag">Cross-border ready</span>
+      <h3>Private transfers</h3>
+      <p>City to lodge within Namibia, or across the border into Botswana, South Africa or Zambia, in your own vehicle and driver.</p>
+      <span class="go">View private transfers &rarr;</span>
+    </a>
+    <a href="tours-safaris.html" class="photo-card">
+      <!-- PHOTO SLOT: Etosha game drive or Sossusvlei dune, landscape crop ~16:10 -->
+      <div class="photo-slot"><p class="photo-slot-note">Photo slot: Etosha game drive</p></div>
+      <div class="photo-card-body">
+        <h3>Tours &amp; safaris</h3>
+        <p>Etosha's game drives, Twyfelfontein's rock art, a Himba Living Museum visit, six fixed routes or a fully custom one.</p>
+        <span class="go">View tours &amp; safaris &rarr;</span>
+      </div>
+    </a>
+    <a href="activities.html" class="photo-card">
+      <!-- PHOTO SLOT: half-day activity, e.g. desert walk or cultural visit -->
+      <div class="photo-slot"><p class="photo-slot-note">Photo slot: half-day activity</p></div>
+      <div class="photo-card-body">
+        <h3>Activities</h3>
+        <p>Half and full-day excursions you can book on their own, or slot into any transfer or tour already on the calendar.</p>
+        <span class="go">Browse activities &rarr;</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="how">
+  <div class="section-head">
+    <h2>How a trip with us actually starts.</h2>
+    <p>Same process whether it's a twenty-minute airport run or a ten-day loop through the desert.</p>
+  </div>
+  <div class="how-steps">
+    <div class="step">
+      <span class="step-num">01</span>
+      <h3>Tell us where to</h3>
+      <p>Pick a transfer route or one of six tour itineraries above, or just give us your dates and we'll build something around them.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <h3>We confirm the details</h3>
+      <p>Vehicle, driver and route locked in before you land, cross-border paperwork sorted in advance if you're headed to Botswana, South Africa or Zambia.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <h3>You look out the window</h3>
+      <p>Met at arrivals or picked up at your lodge, on schedule, for every leg of the trip from the first transfer to the last.</p>
+    </div>
+  </div>
+</section>
+
+<section class="journeys">
+  <div class="section-head">
+    <span class="label">Signature routes</span>
+    <h2>Six routes, one desert worth exploring twice.</h2>
+    <p>Fixed departures ready to book, or a starting point for a custom itinerary built around your dates.</p>
+  </div>
+  <div class="journey-scroll">
+    <div class="journey-card">
+      <span class="journey-tag">5 Days</span>
+      <h3>Southbound</h3>
+      <p class="journey-route">Windhoek &rarr; Sossusvlei &rarr; Namib Desert &rarr; return</p>
+      <div class="journey-meta">
+        <div class="journey-days">05<span>Days</span></div>
+        <div class="journey-link">Details &rarr;</div>
+      </div>
+    </div>
+    <div class="journey-card">
+      <span class="journey-tag">5 Days</span>
+      <h3>Northbound</h3>
+      <p class="journey-route">Windhoek &rarr; Etosha National Park &rarr; return</p>
+      <div class="journey-meta">
+        <div class="journey-days">05<span>Days</span></div>
+        <div class="journey-link">Details &rarr;</div>
+      </div>
+    </div>
+    <div class="journey-card">
+      <span class="journey-tag">7 Days</span>
+      <h3>Southbound</h3>
+      <p class="journey-route">Windhoek &rarr; Sossusvlei &rarr; Sesriem &rarr; Walvis Bay &rarr; return</p>
+      <div class="journey-meta">
+        <div class="journey-days">07<span>Days</span></div>
+        <div class="journey-link">Details &rarr;</div>
+      </div>
+    </div>
+    <div class="journey-card">
+      <span class="journey-tag">7 Days</span>
+      <h3>Northbound</h3>
+      <p class="journey-route">Windhoek &rarr; Damaraland &rarr; Twyfelfontein &rarr; Etosha &rarr; return</p>
+      <div class="journey-meta">
+        <div class="journey-days">07<span>Days</span></div>
+        <div class="journey-link">Details &rarr;</div>
+      </div>
+    </div>
+    <div class="journey-card">
+      <span class="journey-tag">10 Days</span>
+      <h3>Namibia's Best</h3>
+      <p class="journey-route">Sossusvlei &rarr; Swakopmund &rarr; Damaraland &rarr; Etosha &rarr; Windhoek</p>
+      <div class="journey-meta">
+        <div class="journey-days">10<span>Days</span></div>
+        <div class="journey-link">Details &rarr;</div>
+      </div>
+    </div>
+    <div class="journey-card">
+      <span class="journey-tag">Custom</span>
+      <h3>Build your own</h3>
+      <p class="journey-route">Tell us your dates, pace and interests. We build the route around it.</p>
+      <div class="journey-meta">
+        <div class="journey-days">-<span>Flexible</span></div>
+        <div class="journey-link">Start a request &rarr;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust bar uses real, countable facts about the business rather than
+     invented marketing stats (no guest counts / review scores exist yet). -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-label">Airports covered<br>HKIA &amp; Eros, Windhoek</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Countries reached<br>by cross-border transfer</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Signature routes,<br>plus one built around you</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1</div>
+      <div class="stat-label">Operator, start to finish<br>transfers and tours alike</div>
+    </div>
+  </div>
+</section>
+
+<section class="about-teaser">
+  <div class="photo-slot">
+    <!-- PHOTO SLOT: driver beside vehicle, or hands on the wheel, portrait 4:5 -->
+    <p class="photo-slot-note">Photo slot: driver &amp; vehicle</p>
+  </div>
+  <div class="about-copy">
+    <h2>Built for the airport run. Growing into the open road.</h2>
+    <p>Tot Wa started with transfers: in and out of Hosea Kutako and Eros, city to lodge, and across the border into Botswana, South Africa and Zambia. That's also, as it happens, what <em>tot wa</em> means in Afrikaans: where to?</p>
+    <p>It turned out to be a good question to build a company around. When guests kept asking us to take them further, into Etosha, out to Twyfelfontein, north to a Himba Living Museum, we started planning full safaris too.</p>
+    <a href="about.html" class="btn btn-ghost-light">Read our full story &rarr;</a>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-head">
+    <h2>What guests tell us afterward.</h2>
+    <p>Reviews pull through from Google and TripAdvisor once connected.</p>
+  </div>
+  <div class="testi-grid">
+    <!-- PLACEHOLDER: real guest review, do not fabricate quotes here -->
+    <div class="testi-slot">
+      <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="placeholder-note">Guest review slot. Connect Google / TripAdvisor feed or paste a real quote here.</p>
+    </div>
+    <div class="testi-slot">
+      <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="placeholder-note">Guest review slot. Connect Google / TripAdvisor feed or paste a real quote here.</p>
+    </div>
+    <div class="testi-slot">
+      <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <p class="placeholder-note">Guest review slot. Connect Google / TripAdvisor feed or paste a real quote here.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <h2>Tell us where to.</h2>
+  <a href="#book" class="btn btn-primary">Check availability</a>
+  <!-- EASYOTA PLACEHOLDER: booking widget iframe (book.totwa.com) embeds here
+       once received from EasyOTA. -->
+  <div class="easyota-slot">EasyOTA booking widget embeds here once received (iframe, book.totwa.com)</div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+        Tot Wa
+      </div>
+      <p>Namibian-run transfers and tours. Windhoek-based, country-wide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="airport-transfers.html">Airport transfers</a>
+      <a href="private-transfers.html">Private transfers</a>
+      <a href="tours-safaris.html">Tours &amp; safaris</a>
+      <a href="activities.html">Activities</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About us</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Get in touch</h4>
+      <a href="tel:+264816008766">+264 81 600 8766</a>
+      <a href="mailto:info@tot-wa.com">info@tot-wa.com</a>
+      <a href="https://wa.me/264816008766">WhatsApp us</a>
+      <address>P.O. Box 9332 Eros, Windhoek, Namibia</address>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; <span id="year"></span> Tot Wa Tours &amp; Safaris</span>
+    <span>Windhoek, Namibia</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
