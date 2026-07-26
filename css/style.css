@@ -356,6 +356,12 @@ nav.links a.active{color:var(--olive);}
 
 /* ---- inner page hero (shorter than the homepage split hero) ---- */
 .page-hero{background:var(--ink); color:var(--sand); padding:9rem clamp(1.2rem,4vw,3rem) 4.5rem; position:relative; overflow:hidden;}
+/* flat scrim (brand ink tone, not a gradient), same technique as .hero-top::before */
+.page-hero::before{
+  content:""; position:absolute; inset:0; z-index:1; background:rgba(30,27,22,0.62);
+}
+.page-hero-photo{position:absolute; inset:0; z-index:0; overflow:hidden;}
+.page-hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
 .page-hero .route-motif{opacity:0.12; color:var(--sand);}
 .page-hero-inner{position:relative; z-index:1; max-width:760px;}
 .page-hero .label{color:var(--stone-light); margin-bottom:1.1rem;}
