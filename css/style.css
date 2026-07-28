@@ -92,15 +92,17 @@ nav.links a:not(.btn):hover{color:var(--olive);}
 .menu-toggle span{display:block; width:22px; height:2px; background:var(--sand); margin:5px 0;}
 
 /* ---- hero ---- */
-.hero{background:var(--ink); position:relative; padding:0;}
+/* photo covers the full section (not just hero-top) so the booking card floats over
+   image on every side instead of exposing the plain ink background around it */
+.hero{background:var(--ink); position:relative; overflow:hidden; padding:0 0 clamp(4rem,8vw,6.5rem);}
+/* flat scrim (brand ink tone, not a gradient) so hero text stays legible over the full-bleed photo */
+.hero::before{
+  content:""; position:absolute; inset:0; z-index:1; background:rgba(30,27,22,0.6);
+}
 .hero-top{
-  position:relative; overflow:hidden;
+  position:relative;
   display:flex; align-items:center; justify-content:center;
   min-height:88vh; padding-top:6.5rem;
-}
-/* flat scrim (brand ink tone, not a gradient) so hero text stays legible over the full-bleed photo */
-.hero-top::before{
-  content:""; position:absolute; inset:0; z-index:1; background:rgba(30,27,22,0.6);
 }
 .hero-copy{
   padding:2rem clamp(1.2rem,4vw,3.5rem) 4rem; display:flex; flex-direction:column;
