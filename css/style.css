@@ -364,7 +364,7 @@ nav.links a.active{color:var(--olive);}
 .page-hero{
   background:var(--ink); color:var(--sand); position:relative; overflow:hidden;
   min-height:85vh; padding:6.5rem clamp(1.2rem,4vw,3rem) 4.5rem;
-  display:flex; align-items:center;
+  display:flex; align-items:center; justify-content:center;
 }
 /* flat scrim (brand ink tone, not a gradient), same technique as .hero-top::before */
 .page-hero::before{
@@ -373,12 +373,12 @@ nav.links a.active{color:var(--olive);}
 .page-hero-photo{position:absolute; inset:0; z-index:0; overflow:hidden;}
 .page-hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
 .page-hero .route-motif{opacity:0.12; color:var(--sand);}
-.page-hero-inner{position:relative; z-index:1; width:100%; max-width:760px;}
-.page-hero .label{color:var(--stone-light); margin-bottom:1.1rem;}
+.page-hero-inner{position:relative; z-index:1; width:100%; max-width:760px; margin-inline:auto; text-align:center;}
+.page-hero .label{color:var(--stone-light); margin-bottom:1.1rem; justify-content:center;}
 .page-hero .label::before{background:var(--olive);}
 .page-hero h1{font-family:var(--display); font-weight:600; font-style:italic; font-size:clamp(2.6rem,6vw,4.4rem); line-height:1.04; margin-bottom:1.2rem;}
-.page-hero p{color:var(--stone-light); max-width:540px; font-size:1.05rem; line-height:1.6;}
-.page-hero .hero-actions{margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;}
+.page-hero p{color:var(--stone-light); max-width:540px; margin-inline:auto; font-size:1.05rem; line-height:1.6;}
+.page-hero .hero-actions{margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;}
 
 /* ---- two-column detail block (transfer/about content) ---- */
 .detail-block{display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;}
