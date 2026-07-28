@@ -20,6 +20,30 @@ if (menuToggle && navLinks) {
   }));
 }
 
+// Transfers nav dropdown: CSS handles hover/focus reveal, this handles
+// click-toggle plus closing on outside click or Escape.
+const transfersDropdown = document.getElementById('transfersDropdown');
+const transfersToggle = document.getElementById('transfersToggle');
+if (transfersDropdown && transfersToggle) {
+  const closeTransfersDropdown = () => {
+    transfersDropdown.classList.remove('open');
+    transfersToggle.setAttribute('aria-expanded', 'false');
+  };
+  transfersToggle.addEventListener('click', () => {
+    const isOpen = transfersDropdown.classList.toggle('open');
+    transfersToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (!transfersDropdown.contains(e.target)) closeTransfersDropdown();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && transfersDropdown.classList.contains('open')) {
+      closeTransfersDropdown();
+      transfersToggle.focus();
+    }
+  });
+}
+
 // Ticket search card: Transfer / Tour & Safari mode toggle
 const tabButtons = document.querySelectorAll('.tab-btn');
 const fieldSets = document.querySelectorAll('.field-set');

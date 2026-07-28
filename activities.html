@@ -32,8 +32,17 @@
     Tot Wa
   </a>
   <nav class="links" id="navLinks">
-    <a href="airport-transfers.html">Airport Transfers</a>
-    <a href="private-transfers.html">Private Transfers</a>
+    <a href="index.html">Home</a>
+    <div class="nav-dropdown" id="transfersDropdown">
+      <button type="button" class="nav-dropdown-toggle" id="transfersToggle" aria-haspopup="true" aria-expanded="false">
+        Transfers
+        <svg class="nav-dropdown-caret" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l5 5 5-5"/></svg>
+      </button>
+      <div class="nav-dropdown-menu" role="menu" aria-label="Transfers">
+        <a href="airport-transfers.html" role="menuitem">Airport Transfers</a>
+        <a href="private-transfers.html" role="menuitem">Private Transfers</a>
+      </div>
+    </div>
     <a href="tours-safaris.html">Tours &amp; Safaris</a>
     <a href="activities.html" class="active">Activities</a>
     <a href="about.html">About</a>

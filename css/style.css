@@ -88,6 +88,34 @@ nav.links a:not(.btn){
   color:rgba(245,241,230,0.75); transition:color .2s ease;
 }
 nav.links a:not(.btn):hover{color:var(--olive);}
+
+/* ---- nav dropdown (Transfers) ---- */
+.nav-dropdown{position:relative;}
+.nav-dropdown-toggle{
+  display:inline-flex; align-items:center; gap:0.4em;
+  font-family:var(--mono); font-size:0.76rem; letter-spacing:0.05em; text-transform:uppercase;
+  color:rgba(245,241,230,0.75); background:none; border:none; padding:0; cursor:pointer; transition:color .2s ease;
+}
+.nav-dropdown-toggle:hover, .nav-dropdown-toggle.active{color:var(--olive);}
+.nav-dropdown-caret{width:9px; height:9px; flex-shrink:0; transition:transform .2s ease;}
+.nav-dropdown:hover .nav-dropdown-caret,
+.nav-dropdown:focus-within .nav-dropdown-caret,
+.nav-dropdown.open .nav-dropdown-caret{transform:rotate(180deg);}
+.nav-dropdown-menu{
+  position:absolute; top:calc(100% + 0.9rem); left:50%;
+  min-width:200px; background:var(--ink); border:1px solid var(--line-on-dark); border-radius:6px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.25); padding:0.5rem; display:flex; flex-direction:column; gap:0.2rem;
+  opacity:0; pointer-events:none; transform:translateX(-50%) translateY(-6px);
+  transition:opacity .18s ease, transform .18s ease;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu{
+  opacity:1; pointer-events:auto; transform:translateX(-50%) translateY(0);
+}
+.nav-dropdown-menu a{padding:0.65rem 0.8rem; border-radius:3px;}
+.nav-dropdown-menu a:hover, .nav-dropdown-menu a:focus-visible{background:var(--ink-soft);}
+
 .menu-toggle{display:none; background:none; border:none; cursor:pointer; padding:0.4rem;}
 .menu-toggle span{display:block; width:22px; height:2px; background:var(--sand); margin:5px 0;}
 
@@ -344,6 +372,17 @@ footer{background:var(--ink); color:var(--stone-light); padding:4rem clamp(1.2re
   }
   nav.links.open{transform:translateX(0);}
   .menu-toggle{display:block;}
+  .nav-dropdown{width:100%;}
+  .nav-dropdown-toggle{width:100%; justify-content:space-between;}
+  .nav-dropdown-menu{
+    position:static; opacity:1; pointer-events:auto; transform:none;
+    visibility:hidden; max-height:0; overflow:hidden;
+    background:none; border:none; box-shadow:none; padding:0; margin-top:0;
+    transition:max-height .3s ease;
+  }
+  .nav-dropdown.open .nav-dropdown-menu{
+    transform:none; visibility:visible; max-height:200px; padding:0.4rem 0 0 1rem; margin-top:0.4rem;
+  }
   .ticket-fields{flex-direction:column; align-items:stretch;}
   .field-tear{display:none;}
   .stats-grid{grid-template-columns:1fr; row-gap:1.8rem;}
