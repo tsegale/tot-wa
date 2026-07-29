@@ -88,7 +88,11 @@ nav.links a:not(.btn){
 nav.links a:not(.btn):hover{color:var(--olive);}
 
 /* ---- nav dropdown (Transfers) ---- */
-.nav-dropdown{position:relative;}
+/* display:flex here (not just position:relative) so the wrapper sizes off its
+   toggle button's actual content instead of an inline-formatting-context strut
+   built from the inherited 16px body font, which sat ~3px taller than the
+   other nav links and threw off the row's vertical alignment */
+.nav-dropdown{position:relative; display:flex; align-items:center;}
 /* invisible hover bridge: without it, the gap between the toggle and the
    menu below breaks :hover the instant the cursor crosses it, so the menu
    closes before the pointer ever reaches it */
