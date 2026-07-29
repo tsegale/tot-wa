@@ -91,6 +91,13 @@ nav.links a:not(.btn):hover{color:var(--olive);}
 
 /* ---- nav dropdown (Transfers) ---- */
 .nav-dropdown{position:relative;}
+/* invisible hover bridge: without it, the gap between the toggle and the
+   menu below breaks :hover the instant the cursor crosses it, so the menu
+   closes before the pointer ever reaches it */
+.nav-dropdown::after{
+  content:""; position:absolute; left:50%; transform:translateX(-50%);
+  top:100%; width:max(100%, 220px); height:0.9rem;
+}
 .nav-dropdown-toggle{
   display:inline-flex; align-items:center; gap:0.4em;
   font-family:var(--mono); font-size:0.76rem; letter-spacing:0.05em; text-transform:uppercase;
