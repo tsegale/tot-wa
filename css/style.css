@@ -1,26 +1,35 @@
 /* ==========================================================================
    TOT WA TOURS & SAFARIS: shared design system
-   Palette rationale: olive (#9ebe33) is the existing brand mark, read here as
-   bushveld green. Paired against basalt ink (Damaraland rock), dune sand
-   (Namib pan) and red clay (Kalahari earth) so the accent reads as this
-   specific landscape, not a generic travel-site teal or cream.
+   Palette: five colors only. Background and Text are the two neutral poles
+   (each doubles as the other's foreground when a section flips dark), Cards
+   is the sole surface tint, Muted is the one secondary-text gray, and
+   Primary/Accent are the existing brand green and clay. Every other token
+   below (--ink, --sand, --stone-light, --line, etc.) is a named alias onto
+   one of these five, kept only so existing component and inline-style
+   references don't have to be rewritten one by one.
    Type: Manrope (headings) + Inter (everything else: body, labels, nav,
    buttons). Two families only, weights capped at 500/600, no bold.
    ========================================================================== */
 
 :root{
-  --olive:#9ebe33;
-  --olive-dark:#7c9928;
-  --ink:#1E1B16;
-  --ink-soft:#2B2721;
-  --sand:#F5F1E6;
-  --sand-deep:#EAE2CC;
-  --clay:#B6592F;
-  --clay-dark:#9a4a26;
-  --stone:#6E6A5E;
-  --stone-light:#B7B2A2;
-  --line:rgba(30,27,22,0.12);
-  --line-on-dark:rgba(245,241,230,0.16);
+  --bg:#FAF8F4;
+  --card:#FFFFFF;
+  --text:#222222;
+  --muted:#666666;
+  --primary:#9EBE33;
+  --accent:#B6592F;
+
+  /* legacy component names, aliased onto the five colors above */
+  --olive:var(--primary);
+  --clay:var(--accent);
+  --ink:var(--text);
+  --sand:var(--bg);
+  --stone:var(--muted);
+  --sand-deep:var(--card);
+  --ink-soft:color-mix(in srgb, var(--text) 85%, var(--card));
+  --stone-light:color-mix(in srgb, var(--bg) 70%, var(--text));
+  --line:color-mix(in srgb, var(--text) 12%, transparent);
+  --line-on-dark:color-mix(in srgb, var(--bg) 16%, transparent);
 
   --display:'Manrope', sans-serif;
   --body:'Inter', sans-serif;
@@ -52,12 +61,13 @@ button, select, input{font-family:inherit;}
 /* ---- buttons ---- */
 .btn{
   font-family:var(--body); font-weight:500; font-size:1rem; letter-spacing:0.02em; text-transform:uppercase;
-  padding:0.9rem 1.6rem; border-radius:3px; transition:transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+  padding:0.9rem 1.6rem; border-radius:3px; transition:transform .18s ease, filter .18s ease, border-color .18s ease, color .18s ease;
   display:inline-flex; align-items:center; gap:0.6em; border:1px solid transparent; cursor:pointer;
 }
 .btn-primary{background:var(--olive); color:var(--ink);}
-.btn-primary:hover{background:var(--olive-dark); transform:translateY(-2px);}
-.btn-ghost-dark{border-color:rgba(245,241,230,0.4); color:var(--sand);}
+/* darken on hover via filter, not a second hardcoded color, so hover states never add a color beyond the five */
+.btn-primary:hover{filter:brightness(0.9); transform:translateY(-2px);}
+.btn-ghost-dark{border-color:rgba(250,248,244,0.4); color:var(--sand);}
 .btn-ghost-dark:hover{border-color:var(--olive); color:var(--olive); transform:translateY(-2px);}
 .btn-ghost-light{border-color:var(--ink); color:var(--ink);}
 .btn-ghost-light:hover{border-color:var(--clay); color:var(--clay); transform:translateY(-2px);}
@@ -83,7 +93,7 @@ header.scrolled{
 nav.links{display:flex; gap:clamp(1rem,3vw,2rem); align-items:center;}
 nav.links a:not(.btn){
   font-family:var(--body); font-size:0.76rem; letter-spacing:0.05em; text-transform:uppercase;
-  color:rgba(245,241,230,0.75); transition:color .2s ease;
+  color:rgba(250,248,244,0.75); transition:color .2s ease;
 }
 nav.links a:not(.btn):hover{color:var(--olive);}
 
@@ -103,7 +113,7 @@ nav.links a:not(.btn):hover{color:var(--olive);}
 .nav-dropdown-toggle{
   display:inline-flex; align-items:center; gap:0.4em;
   font-family:var(--body); font-size:0.76rem; letter-spacing:0.05em; text-transform:uppercase;
-  color:rgba(245,241,230,0.75); background:none; border:none; padding:0; cursor:pointer; transition:color .2s ease;
+  color:rgba(250,248,244,0.75); background:none; border:none; padding:0; cursor:pointer; transition:color .2s ease;
 }
 .nav-dropdown-toggle:hover, .nav-dropdown-toggle.active{color:var(--olive);}
 .nav-dropdown-caret{width:9px; height:9px; flex-shrink:0; transition:transform .2s ease;}
@@ -113,7 +123,7 @@ nav.links a:not(.btn):hover{color:var(--olive);}
 .nav-dropdown-menu{
   position:absolute; top:calc(100% + 0.9rem); left:50%;
   min-width:200px; background:var(--ink); border:1px solid var(--line-on-dark); border-radius:6px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.25); padding:0.5rem; display:flex; flex-direction:column; gap:0.2rem;
+  box-shadow:0 8px 24px rgb(0 0 0 / 8%); padding:0.5rem; display:flex; flex-direction:column; gap:0.2rem;
   opacity:0; pointer-events:none; transform:translateX(-50%) translateY(-6px);
   transition:opacity .18s ease, transform .18s ease;
 }
@@ -134,7 +144,7 @@ nav.links a:not(.btn):hover{color:var(--olive);}
 .hero{background:var(--ink); position:relative; overflow:hidden; padding:0 0 clamp(4rem,8vw,6.5rem);}
 /* flat scrim (brand ink tone, not a gradient) so hero text stays legible over the full-bleed photo */
 .hero::before{
-  content:""; position:absolute; inset:0; z-index:1; background:rgba(30,27,22,0.6);
+  content:""; position:absolute; inset:0; z-index:1; background:rgba(34,34,34,0.6);
 }
 .hero-top{
   position:relative;
@@ -176,14 +186,14 @@ nav.links a:not(.btn):hover{color:var(--olive);}
 }
 .photo-slot-note{
   font-family:var(--body); font-size:0.68rem; color:var(--stone-light);
-  border:1px dashed rgba(245,241,230,0.3); padding:0.6rem 0.8rem; border-radius:2px;
+  border:1px dashed rgba(250,248,244,0.3); padding:0.6rem 0.8rem; border-radius:2px;
   max-width:260px; line-height:1.5;
 }
 /* credit line required by a couple of CC BY-SA stock photos, see images/CREDITS.md */
 .photo-credit{
   position:absolute; right:0.6rem; bottom:0.6rem; z-index:2;
   font-family:var(--body); font-size:0.62rem; line-height:1.3; letter-spacing:0.02em;
-  color:#fff; background:rgba(0,0,0,0.45); padding:0.2rem 0.55rem; border-radius:2px;
+  color:var(--card); background:rgba(34,34,34,0.45); padding:0.2rem 0.55rem; border-radius:2px;
 }
 .photo-credit a{color:inherit;}
 
@@ -194,7 +204,7 @@ nav.links a:not(.btn):hover{color:var(--olive);}
 .ticket-wrap{position:relative; z-index:3; padding:0 clamp(1.2rem,4vw,3.5rem); margin-top:-3.6rem;}
 .ticket{
   background:var(--sand); border:1px solid var(--line); border-radius:6px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+  box-shadow:0 8px 24px rgb(0 0 0 / 8%);
   display:grid; grid-template-columns:auto 1fr; overflow:hidden;
 }
 .ticket-tabs{
@@ -333,12 +343,11 @@ section{padding:clamp(4.5rem,9vw,7.5rem) clamp(1.2rem,4vw,3rem);}
   max-width:700px; margin-inline:auto; line-height:1.15;
 }
 .cta-banner .btn-primary{background:var(--ink); color:var(--sand);}
-.cta-banner .btn-primary:hover{background:#0f0d0a;}
 /* EASYOTA PLACEHOLDER: booking widget iframe (book.totwa.com) embeds here
    once received from EasyOTA. Do not remove this comment when wiring it in. */
 .easyota-slot{
-  max-width:560px; margin:2rem auto 0; border:1px dashed rgba(30,27,22,0.4);
-  padding:1.2rem; font-family:var(--body); font-size:0.72rem; color:rgba(30,27,22,0.7); border-radius:3px;
+  max-width:560px; margin:2rem auto 0; border:1px dashed rgba(34,34,34,0.4);
+  padding:1.2rem; font-family:var(--body); font-size:0.72rem; color:rgba(34,34,34,0.7); border-radius:3px;
 }
 
 /* ---- footer ---- */
@@ -416,7 +425,7 @@ nav.links a.active{color:var(--olive);}
 }
 /* flat scrim (brand ink tone, not a gradient), same technique as .hero-top::before */
 .page-hero::before{
-  content:""; position:absolute; inset:0; z-index:1; background:rgba(30,27,22,0.62);
+  content:""; position:absolute; inset:0; z-index:1; background:rgba(34,34,34,0.62);
 }
 .page-hero-photo{position:absolute; inset:0; z-index:0; overflow:hidden;}
 .page-hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
@@ -470,7 +479,7 @@ nav.links a.active{color:var(--olive);}
 
 /* ---- activity search bar (single-mode variant of the ticket component) ---- */
 .activity-search{
-  background:var(--sand); border:1px solid var(--line); border-radius:6px; box-shadow:0 20px 40px rgba(0,0,0,0.16);
+  background:var(--sand); border:1px solid var(--line); border-radius:6px; box-shadow:0 8px 24px rgb(0 0 0 / 8%);
   padding:1.6rem 1.8rem; display:flex; align-items:flex-end; gap:1.2rem; flex-wrap:wrap;
   position:relative; z-index:3; margin-top:-3rem; margin-inline:clamp(1.2rem,4vw,3rem);
 }
