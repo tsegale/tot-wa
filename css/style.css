@@ -311,6 +311,9 @@ section{padding:clamp(4.5rem,9vw,7.5rem) clamp(1.2rem,4vw,3rem);}
 }
 .journey-days{font-family:var(--display); font-size:1.5rem; font-weight:600; color:var(--olive);}
 .journey-days span{font-family:var(--body); font-size:0.62rem; color:var(--stone-light); display:block; text-transform:uppercase; margin-top:0.2rem; font-weight:500;}
+.journey-meta-left{display:flex; flex-direction:column; gap:0.5rem;}
+.journey-price .price-amount{font-family:var(--body); font-weight:600; font-size:0.8rem; color:var(--sand); display:block;}
+.journey-price .price-unit{font-weight:500; color:var(--stone-light);}
 .journey-link{font-family:var(--body); font-size:0.68rem; color:var(--stone-light); text-align:right;}
 
 /* ---- stats / trust ---- */
@@ -468,7 +471,16 @@ nav.links a.active{color:var(--olive);}
 .package-tag{font-family:var(--body); font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--clay); border:1px solid rgba(182,89,47,0.35); padding:0.25rem 0.6rem; border-radius:2px;}
 .package-days{font-family:var(--display); font-weight:600; font-size:1.6rem; color:var(--ink); text-align:right; line-height:1;}
 .package-days span{display:block; font-family:var(--body); font-size:0.6rem; color:var(--stone); text-transform:uppercase; margin-top:0.2rem; font-weight:500;}
-.package-body h3{font-family:var(--display); font-weight:500; font-size:1.5rem; margin-bottom:0.7rem;}
+.package-body h3{font-family:var(--display); font-weight:500; font-size:1.5rem; margin-bottom:0.5rem;}
+.package-price{margin-bottom:0.8rem;}
+.package-price .price-amount{font-family:var(--display); font-weight:600; font-size:1.1rem; color:var(--ink); display:block;}
+.package-price .price-unit{font-family:var(--body); font-weight:500; font-size:0.7rem; color:var(--stone);}
+.package-card.custom .package-price .price-amount{color:var(--sand);}
+.package-card.custom .package-price .price-unit{color:var(--stone-light);}
+.price-note{font-family:var(--body); font-weight:500; font-size:0.64rem; display:block; margin-top:0.2rem; line-height:1.4;}
+.journey-price .price-note{color:var(--stone-light);}
+.package-price .price-note{color:var(--stone);}
+.package-card.custom .package-price .price-note{color:var(--stone-light);}
 .package-route{font-size:0.85rem; color:var(--stone); margin-bottom:1rem; line-height:1.5;}
 .package-highlights{display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.4rem;}
 .package-highlights span{font-family:var(--body); font-size:0.7rem; background:var(--sand-deep); color:var(--ink); padding:0.3rem 0.7rem; border-radius:2px;}
