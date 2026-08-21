@@ -35,6 +35,12 @@
   --body:'Inter', sans-serif;
 
   --max:1280px;
+
+  /* Logo rule: "TOT" is always --olive, never changes. "WA" and the
+     tagline read this variable instead: black by default, and flipped
+     to --sand wherever the logo sits on a dark surface (scrolled navbar,
+     a dark hero, the footer). Never hardcode a color per instance. */
+  --logo-wa:var(--ink);
 }
 
 *{box-sizing:border-box; margin:0; padding:0;}
@@ -88,8 +94,18 @@ header.scrolled{
   backdrop-filter:blur(8px);
   border-bottom-color:var(--line-on-dark);
 }
-.logo{display:flex; align-items:center;}
-.logo-img{height:64px; width:auto; display:block;}
+/* header.on-dark: set on pages whose header sits over a dark hero by
+   default (everything except terms.html, which opens on a light --sand-deep
+   hero). header.scrolled is always dark, on every page. */
+header.on-dark, header.scrolled{--logo-wa:var(--sand);}
+.logo{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.2rem; height:100%;}
+.logo-icon{height:36px; width:auto; display:block;}
+.logo-text{
+  font-family:var(--display); font-weight:800; font-size:0.92rem; line-height:1;
+  text-transform:uppercase; letter-spacing:0.02em; display:flex; gap:0.3em;
+}
+.logo-tot{color:var(--olive);}
+.logo-wa{color:var(--logo-wa); transition:color .2s ease;}
 nav.links{display:flex; gap:clamp(1rem,3vw,2rem); align-items:center;}
 nav.links a:not(.btn){
   font-family:var(--body); font-size:0.76rem; letter-spacing:0.05em; text-transform:uppercase;
@@ -356,13 +372,18 @@ section{padding:clamp(4.5rem,9vw,7.5rem) clamp(1.2rem,4vw,3rem);}
 }
 
 /* ---- footer ---- */
-footer{background:var(--ink); color:var(--stone-light); padding:4rem clamp(1.2rem,4vw,3rem) 2rem;}
+footer{background:var(--ink); color:var(--stone-light); padding:4rem clamp(1.2rem,4vw,3rem) 2rem; --logo-wa:var(--sand);}
 .footer-grid{
   display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:2.5rem; padding-bottom:3rem;
   border-bottom:1px solid var(--line-on-dark);
 }
-.footer-logo{display:inline-flex; align-items:center; margin-bottom:1rem;}
-.footer-logo-img{height:140px; width:auto; display:block;}
+.footer-logo{display:flex; flex-direction:column; align-items:flex-start; gap:0.4rem; margin-bottom:1rem;}
+.footer-logo-icon{height:76px; width:auto; display:block;}
+.footer-logo .logo-text{font-size:1.6rem; gap:0.32em;}
+.footer-tagline{
+  font-family:var(--body); font-weight:600; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--logo-wa);
+}
 .footer-grid > div > p{font-size:0.85rem; line-height:1.65; max-width:280px;}
 .footer-col h4{
   font-family:var(--body); font-weight:500; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
