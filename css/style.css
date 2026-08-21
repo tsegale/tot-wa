@@ -521,6 +521,8 @@ nav.links a.active{color:var(--olive);}
 
 /* ---- activity cards ---- */
 .activity-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem;}
+/* two-up: for grids with an even card count (e.g. the About page services grid) */
+.activity-grid.two-up{grid-template-columns:repeat(2,1fr);}
 .activity-card{border:1px solid var(--line); border-radius:6px; overflow:hidden; display:flex; flex-direction:column; background:var(--sand);}
 .activity-card .photo-slot{aspect-ratio:4/3; background:var(--sand-deep); border-left:none;}
 .activity-body{padding:1.5rem; display:flex; flex-direction:column; flex:1;}
@@ -592,7 +594,7 @@ nav.links a.active{color:var(--olive);}
   .contact-grid{grid-template-columns:1fr;}
 }
 @media (max-width: 640px){
-  .activity-grid{grid-template-columns:1fr;}
+  .activity-grid, .activity-grid.two-up{grid-template-columns:1fr;}
   .activity-search{flex-direction:column; align-items:stretch;}
   .form-row{flex-direction:column;}
   .values-grid.quad{grid-template-columns:1fr;}
