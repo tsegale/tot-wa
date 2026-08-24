@@ -554,6 +554,11 @@ nav.links a.active{color:var(--olive);}
 .form-group textarea{resize:vertical; min-height:120px;}
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus{border-color:var(--olive);}
 .form-note{font-family:var(--body); font-size:0.7rem; color:var(--stone); border:1px dashed var(--stone-light); padding:0.8rem 1rem; border-radius:3px;}
+.form-note.success{color:var(--ink); border-style:solid; border-color:var(--olive);}
+.form-note.error{color:var(--clay); border-style:solid; border-color:var(--clay);}
+/* honeypot: pushed off-screen rather than display:none, since some bots
+   specifically check for and skip display:none fields to avoid this trap. */
+.hp-field{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
 .map-slot{
   aspect-ratio:16/9; background:var(--sand-deep); border-radius:6px; display:flex; align-items:center; justify-content:center;
   border:1px dashed var(--stone-light); text-align:center; padding:1.5rem;

@@ -89,42 +89,34 @@
 
     <div>
       <h2 style="font-family:var(--display); font-weight:600; font-size:clamp(1.7rem,3vw,2.2rem); margin-bottom:1.4rem;">Or send us a message</h2>
-      <!-- FORM PLACEHOLDER: no backend wired up yet. JS below prevents the
-           default page reload and shows a confirmation note. Replace with a
-           real submit target (e.g. an email-forwarding endpoint) when ready. -->
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm" novalidate>
         <div class="form-row">
           <div class="form-group">
             <label for="cf-name">Name</label>
-            <input id="cf-name" type="text" name="name" required>
+            <input id="cf-name" type="text" name="name" autocomplete="name" required>
           </div>
           <div class="form-group">
             <label for="cf-email">Email</label>
-            <input id="cf-email" type="email" name="email" required>
+            <input id="cf-email" type="email" name="email" autocomplete="email" required>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cf-interest">I'm asking about</label>
-            <select id="cf-interest" name="interest">
-              <option>Airport transfer</option>
-              <option>Private transfer</option>
-              <option>Tours &amp; safaris</option>
-              <option>Activities</option>
-              <option>Something custom</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="cf-dates">Rough dates</label>
-            <input id="cf-dates" type="text" name="dates" placeholder="e.g. 12&ndash;20 September">
-          </div>
+        <div class="form-group">
+          <label for="cf-phone">Phone (optional)</label>
+          <input id="cf-phone" type="tel" name="phone" autocomplete="tel">
         </div>
         <div class="form-group">
           <label for="cf-message">Message</label>
           <textarea id="cf-message" name="message" required></textarea>
         </div>
+        <!-- Honeypot: hidden from real visitors via CSS, out of tab order.
+             Bots that auto-fill every field will fill this one; the server
+             rejects the submission silently when it's non-empty. -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="cf-website">Company website</label>
+          <input id="cf-website" type="text" name="website" tabindex="-1" autocomplete="off">
+        </div>
         <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send message</button>
-        <p class="form-note" id="formNote" hidden>Message captured. No backend is wired up yet, this form doesn't send anywhere until we connect it. In the meantime, use the phone, WhatsApp or email above.</p>
+        <p class="form-note" id="formNote" role="status" hidden></p>
       </form>
     </div>
   </div>

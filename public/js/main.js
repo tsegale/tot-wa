@@ -59,13 +59,44 @@ tabButtons.forEach(btn => {
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// FORM PLACEHOLDER: no backend is wired up yet, so this only stops the page
-// reload and surfaces a note. Replace with a real submit target when ready.
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  const formNote = document.getElementById('formNote');
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+  const setNote = (text, state) => {
+    formNote.textContent = text;
+    formNote.classList.remove('success', 'error');
+    if (state) formNote.classList.add(state);
+    formNote.hidden = false;
+  };
+
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    document.getElementById('formNote').hidden = false;
+    submitBtn.disabled = true;
+    setNote('Sending…');
+
+    const payload = Object.fromEntries(new FormData(contactForm).entries());
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+
+      if (response.ok && result.ok) {
+        setNote("Message sent. We'll get back to you within one business day.", 'success');
+        contactForm.reset();
+      } else {
+        setNote(result.error || "Couldn't send your message. Please try again, or email info@tot-wa.com directly.", 'error');
+      }
+    } catch (err) {
+      setNote("Couldn't reach the server. Please try again, or email info@tot-wa.com directly.", 'error');
+    } finally {
+      submitBtn.disabled = false;
+    }
   });
 }
 
