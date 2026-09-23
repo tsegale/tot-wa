@@ -48,11 +48,11 @@
 }
 
 @font-face{
-  font-family:'Abel Pro'; src:url('/fonts/AbelPro-Regular.woff2') format('woff2');
+  font-family:'Abel Pro'; src:url('../fonts/AbelPro-Regular.woff2') format('woff2');
   font-weight:400; font-style:normal; font-display:swap;
 }
 @font-face{
-  font-family:'Abel Pro'; src:url('/fonts/AbelPro-Bold.woff2') format('woff2');
+  font-family:'Abel Pro'; src:url('../fonts/AbelPro-Bold.woff2') format('woff2');
   font-weight:700; font-style:normal; font-display:swap;
 }
 

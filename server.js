@@ -2,6 +2,7 @@
 require('dotenv').config({ quiet: true });
 
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const { Resend } = require('resend');
 
@@ -48,9 +49,22 @@ function validateContactPayload(body) {
 const app = express();
 
 app.use(express.json());
-// Only ./public is web-servable - server.js, package.json, .env etc. stay
-// off-limits, since express.static would otherwise serve the whole repo.
-app.use(express.static(path.join(__dirname, 'public'), { extensions: ['html'] }));
+// The site lives at the repo root (so GitHub Pages can serve it), but only
+// ./assets and the root-level .html pages are web-servable. server.js,
+// package.json, .env, node_modules etc. stay off-limits, which is why this
+// is not a plain express.static on __dirname.
+const PAGES = new Set(fs.readdirSync(__dirname).filter((file) => file.endsWith('.html')));
+
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
+app.get('/{:page}', (req, res, next) => {
+  const requested = req.params.page || 'index.html';
+  const page = requested.endsWith('.html') ? requested : `${requested}.html`;
+  if (!PAGES.has(page)) return next();
+  res.sendFile(path.join(__dirname, page), (err) => {
+    if (err) next(err);
+  });
+});
 
 app.post('/api/contact', async (req, res) => {
   const body = req.body || {};

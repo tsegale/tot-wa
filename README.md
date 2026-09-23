@@ -12,6 +12,22 @@ npm start               # or: npm run dev (auto-restarts on change)
 
 Serves the site and the API on http://localhost:3000 (or `PORT` from `.env`).
 
+## Project structure
+
+```
+index.html, about.html, ...   site pages, at the repo root so GitHub Pages serves them
+assets/css/                   stylesheet
+assets/js/                    site scripts
+assets/images/                photos and logos (credits in assets/images/CREDITS.md)
+assets/fonts/                 self-hosted Abel Pro web fonts
+server.js                     Express server: serves the pages and assets/, plus POST /api/contact
+.nojekyll                     tells GitHub Pages to serve files as-is
+```
+
+The Express server only exposes the root `.html` pages and `assets/`, never
+`server.js`, `.env`, or `node_modules`. New pages need a server restart to be
+picked up.
+
 ## Contact form
 
 `POST /api/contact` validates `name`, `email`, `message` (required) and
