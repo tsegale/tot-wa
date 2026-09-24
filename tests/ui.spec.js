@@ -281,3 +281,28 @@ test.describe('booking dialog', () => {
     await expect(page.locator('#cf-pax')).toHaveValue('3');
   });
 });
+
+test.describe('transfer booking options', () => {
+  for (const file of ['airport-transfers.html', 'private-transfers.html']) {
+    test(`${file}: checkboxes precede the submit button in every mode`, async ({ page }) => {
+      await isolate(page);
+      await page.goto(`/${file}`);
+      const result = await page.evaluate(() => [...document.querySelectorAll('form[data-booking-form]')]
+        .filter((form) => form.querySelector('input[type="checkbox"]'))
+        .map((form) => {
+          const submit = form.querySelector('[type="submit"]');
+          const boxes = [...form.querySelectorAll('input[type="checkbox"]')];
+          return {
+            id: form.id,
+            count: boxes.length,
+            allBefore: boxes.every((box) => Boolean(box.compareDocumentPosition(submit) & Node.DOCUMENT_POSITION_FOLLOWING)),
+          };
+        }));
+      expect(result.length).toBe(2);
+      for (const form of result) {
+        expect(form.count, form.id).toBe(2);
+        expect(form.allBefore, `${form.id} checkboxes before submit`).toBe(true);
+      }
+    });
+  }
+});

@@ -517,7 +517,10 @@ section{padding:var(--section-pad) max(var(--gutter), calc((100% - var(--max)) /
 .ticket-form{display:grid; grid-template-columns:1fr auto; gap:1rem 1.25rem; align-items:end;}
 .ticket-form .form-grid{grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));}
 .ticket-form > .btn{min-width:180px;}
-.ticket-form .form-extras{grid-column:1 / -1;}
+/* Options sit before the submit button in DOM and reading order: fields
+   take the full first row, options and the button share the second. */
+.ticket-form:has(.form-extras) .form-grid{grid-column:1 / -1;}
+.ticket-form .form-extras{align-self:center;}
 .ticket-form[hidden]{display:none;}
 @media (max-width:860px){
   .ticket-form{grid-template-columns:1fr;}
