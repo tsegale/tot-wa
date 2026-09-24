@@ -1,0 +1,281 @@
+{
+  "about/hero.webp": {
+    "w": 2000,
+    "h": 1125,
+    "widths": [
+      160,
+      640,
+      1024,
+      1600
+    ],
+    "crops": {
+      "4x5": [
+        640
+      ]
+    }
+  },
+  "about/landscape.webp": {
+    "w": 1000,
+    "h": 1250,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "about/lion-safari.jpg": {
+    "w": 723,
+    "h": 377,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "about/namibia-route-map.jpg": {
+    "w": 520,
+    "h": 467,
+    "widths": [
+      160
+    ]
+  },
+  "about/team-fleet.jpg": {
+    "w": 1394,
+    "h": 657,
+    "widths": [
+      160,
+      640,
+      1024
+    ]
+  },
+  "about/vehicle-rental-suv.jpg": {
+    "w": 273,
+    "h": 184,
+    "widths": [
+      160
+    ]
+  },
+  "about/windhoek-early-vehicle.webp": {
+    "w": 1000,
+    "h": 1250,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "activities/hero.webp": {
+    "w": 2000,
+    "h": 1125,
+    "widths": [
+      160,
+      640,
+      1024,
+      1600
+    ],
+    "crops": {
+      "4x5": [
+        640
+      ]
+    }
+  },
+  "activities/himba-village.webp": {
+    "w": 1000,
+    "h": 750,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "activities/twyfelfontein-rock-art.webp": {
+    "w": 1000,
+    "h": 750,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "activities/waterhole.webp": {
+    "w": 1000,
+    "h": 750,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "airport-transfers/arrivals-pickup.webp": {
+    "w": 1000,
+    "h": 1250,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "airport-transfers/dusk-arrival.webp": {
+    "w": 1000,
+    "h": 1250,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "airport-transfers/hero.webp": {
+    "w": 2000,
+    "h": 1125,
+    "widths": [
+      160,
+      640,
+      1024,
+      1600
+    ],
+    "crops": {
+      "4x5": [
+        640
+      ]
+    }
+  },
+  "contact/hero.webp": {
+    "w": 2000,
+    "h": 1125,
+    "widths": [
+      160,
+      640,
+      1024,
+      1600
+    ],
+    "crops": {
+      "4x5": [
+        640
+      ]
+    }
+  },
+  "home/about-section.webp": {
+    "w": 1000,
+    "h": 1250,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "home/activities-card.webp": {
+    "w": 1400,
+    "h": 875,
+    "widths": [
+      160,
+      640,
+      1024
+    ]
+  },
+  "home/hero.webp": {
+    "w": 2000,
+    "h": 1125,
+    "widths": [
+      160,
+      640,
+      1024,
+      1600
+    ],
+    "crops": {
+      "4x5": [
+        640
+      ]
+    }
+  },
+  "home/tours-safaris-card.webp": {
+    "w": 1400,
+    "h": 875,
+    "widths": [
+      160,
+      640,
+      1024
+    ]
+  },
+  "private-transfers/cross-border-route.webp": {
+    "w": 1000,
+    "h": 1250,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "private-transfers/hero.webp": {
+    "w": 2000,
+    "h": 1125,
+    "widths": [
+      160,
+      640,
+      1024,
+      1600
+    ],
+    "crops": {
+      "4x5": [
+        640
+      ]
+    }
+  },
+  "private-transfers/lodge-arrival.webp": {
+    "w": 1000,
+    "h": 1250,
+    "widths": [
+      160,
+      640
+    ]
+  },
+  "tours-safaris/etosha-game-drive.webp": {
+    "w": 1400,
+    "h": 788,
+    "widths": [
+      160,
+      640,
+      1024
+    ]
+  },
+  "tours-safaris/hero.webp": {
+    "w": 2000,
+    "h": 1125,
+    "widths": [
+      160,
+      640,
+      1024,
+      1600
+    ],
+    "crops": {
+      "4x5": [
+        640
+      ]
+    }
+  },
+  "tours-safaris/sossusvlei-dunes.webp": {
+    "w": 1400,
+    "h": 788,
+    "widths": [
+      160,
+      640,
+      1024
+    ]
+  },
+  "tours-safaris/swakopmund-seafront.webp": {
+    "w": 1400,
+    "h": 788,
+    "widths": [
+      160,
+      640,
+      1024
+    ]
+  },
+  "tours-safaris/twyfelfontein-rock-art.webp": {
+    "w": 1400,
+    "h": 788,
+    "widths": [
+      160,
+      640,
+      1024
+    ]
+  },
+  "tours-safaris/walvis-bay-coast.webp": {
+    "w": 1400,
+    "h": 788,
+    "widths": [
+      160,
+      640,
+      1024
+    ]
+  }
+}
