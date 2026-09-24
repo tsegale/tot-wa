@@ -306,3 +306,37 @@ test.describe('transfer booking options', () => {
     });
   }
 });
+
+test.describe('tour route maps', () => {
+  const TOUR_PAGES = PAGES.filter((f) => f.startsWith('tour-'));
+  for (const file of TOUR_PAGES) {
+    for (const viewport of VIEWPORTS) {
+      test(`${file} @ ${viewport.width}: no stop label falls outside the map`, async ({ page }) => {
+        await page.setViewportSize(viewport);
+        await isolate(page);
+        await page.goto(`/${file}`);
+        await page.evaluate(() => document.fonts.ready);
+        const labels = await page.evaluate(() => {
+          const svg = document.querySelector('[data-route-map] svg');
+          const vb = svg.viewBox.baseVal;
+          const frame = svg.getBoundingClientRect();
+          return [...svg.querySelectorAll('.map-stop text')].map((t) => {
+            const b = t.getBBox();
+            const r = t.getBoundingClientRect();
+            return {
+              name: t.textContent,
+              inViewBox: b.x >= vb.x && b.y >= vb.y && b.x + b.width <= vb.x + vb.width && b.y + b.height <= vb.y + vb.height,
+              onScreen: r.left >= frame.left - 0.5 && r.top >= frame.top - 0.5
+                && r.right <= frame.right + 0.5 && r.bottom <= frame.bottom + 0.5,
+            };
+          });
+        });
+        expect(labels.length).toBeGreaterThan(1);
+        for (const label of labels) {
+          expect(label.inViewBox, `${label.name} inside the viewBox`).toBe(true);
+          expect(label.onScreen, `${label.name} inside the rendered map`).toBe(true);
+        }
+      });
+    }
+  }
+});

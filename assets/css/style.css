@@ -998,13 +998,15 @@ section.tour-section{padding:0;}
   .tour-aside{display:none;}
 }
 .route-map{background:var(--sand-100); border-radius:var(--r-card); padding:0.5rem; overflow:hidden;}
-.route-map svg{width:100%; height:auto; max-height:520px;}
-.map-country{fill:var(--card); stroke:var(--line-strong); stroke-width:1.5;}
-.map-route{fill:none; stroke:var(--green-700); stroke-width:2.5; stroke-dasharray:6 7; stroke-linecap:round; opacity:.55;}
+/* max-width keeps labels (sized in map units, see build-tours.js) near 21px on desktop */
+.route-map svg{display:block; width:100%; max-width:480px; height:auto; max-height:520px; margin-inline:auto; overflow:hidden;}
+/* the country is context only: faint, and clipped to the route's viewBox */
+.map-country{fill:var(--sand-50); stroke:var(--line); stroke-width:1; vector-effect:non-scaling-stroke;}
+.map-route{fill:none; stroke:var(--green-700); stroke-width:2.5; stroke-dasharray:6 7; stroke-linecap:round; opacity:.55; vector-effect:non-scaling-stroke;}
 .map-progress{fill:none; stroke:var(--green-700); stroke-width:3; stroke-linecap:round; transition:stroke-dashoffset 800ms var(--ease-out);}
-.map-stop circle{fill:var(--ink-900); stroke:var(--card); stroke-width:2; transition:r var(--t-micro) var(--ease-out), fill var(--t-micro) var(--ease-out);}
-.map-stop.active circle{r:9px; fill:var(--clay-600);}
-.map-stop text{font-family:var(--body); font-size:20px; font-weight:600; fill:var(--ink-900); paint-order:stroke; stroke:var(--card); stroke-width:4px; stroke-linejoin:round;}
+.map-stop circle{fill:var(--ink-900); stroke:var(--card); stroke-width:2; vector-effect:non-scaling-stroke; transition:r var(--t-micro) var(--ease-out), fill var(--t-micro) var(--ease-out);}
+.map-stop.active circle{r:calc(var(--map-dot) * 1.5); fill:var(--clay-600);}
+.map-stop text{font-family:var(--body); font-size:var(--map-font); font-weight:600; fill:var(--ink-900); paint-order:stroke; stroke:var(--card); stroke-width:calc(var(--map-font) * 0.2); stroke-linejoin:round;}
 @media (min-width:1081px){.route-map.sticky-map{position:sticky; top:96px; z-index:1;}}
 @media (max-width:1080px){.route-map.has-days svg{height:220px; max-height:220px;}}
 .stop-list{counter-reset:stop; display:grid; gap:0; margin-top:1.25rem;}
