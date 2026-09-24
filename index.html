@@ -25,8 +25,8 @@
 <link rel="icon" type="image/png" href="assets/images/tot-wa-icon.png">
 <!-- /@head -->
 <!-- @hero-preload src="assets/images/home/hero.webp" -->
-<link rel="preload" as="image" imagesrcset="assets/images/home/hero-4x5-640.webp 640w" imagesizes="100vw" media="(max-width: 767px)" fetchpriority="high">
-<link rel="preload" as="image" imagesrcset="assets/images/home/hero-160.webp 160w, assets/images/home/hero-640.webp 640w, assets/images/home/hero-1024.webp 1024w, assets/images/home/hero-1600.webp 1600w, assets/images/home/hero.webp 2000w" imagesizes="100vw" media="(min-width: 768px)" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="assets/images/home/hero-4x5-640.webp 640w, assets/images/home/hero-4x5-900.webp 900w" imagesizes="100vw" media="(max-width: 767px), (orientation: portrait)" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="assets/images/home/hero-160.webp 160w, assets/images/home/hero-640.webp 640w, assets/images/home/hero-1024.webp 1024w, assets/images/home/hero-1600.webp 1600w, assets/images/home/hero.webp 2000w" imagesizes="100vw" media="(min-width: 768px) and (orientation: landscape)" fetchpriority="high">
 <!-- /@hero-preload -->
 <!-- @jsonld-org -->
 <script type="application/ld+json">
@@ -150,7 +150,7 @@
 <section class="hero surface-dark">
   <div class="hero-media">
     <picture>
-      <source media="(max-width: 767px)" data-src="assets/images/home/hero.webp" data-crop="4x5" sizes="100vw" srcset="assets/images/home/hero-4x5-640.webp 640w" width="640" height="800">
+      <source media="(max-width: 767px), (orientation: portrait)" data-src="assets/images/home/hero.webp" data-crop="4x5" sizes="100vw" srcset="assets/images/home/hero-4x5-640.webp 640w, assets/images/home/hero-4x5-900.webp 900w" width="900" height="1125">
       <img src="assets/images/home/hero.webp" alt="Namib desert dunes meeting the Atlantic Ocean at Sandwich Harbour, near Walvis Bay" sizes="100vw" fetchpriority="high" loading="eager" decoding="async" srcset="assets/images/home/hero-160.webp 160w, assets/images/home/hero-640.webp 640w, assets/images/home/hero-1024.webp 1024w, assets/images/home/hero-1600.webp 1600w, assets/images/home/hero.webp 2000w" width="2000" height="1125">
     </picture>
     <!-- Ambient hero video, off until footage exists (see CONTENT-TODO.md).

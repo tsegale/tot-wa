@@ -55,7 +55,10 @@ async function main() {
       const cropH = Math.min(h, Math.round((w * 5) / 4));
       const cropW = Math.round((cropH * 4) / 5);
       const box = { left: Math.round((w - cropW) / 2), top: Math.round((h - cropH) / 2), width: cropW, height: cropH };
+      // Also keep the crop at its full width when it falls between steps,
+      // so portrait tablets never upscale the 640 file.
       const cropWidths = CROP_WIDTHS.filter((target) => target <= cropW);
+      if (!cropWidths.includes(cropW) && cropW < CROP_WIDTHS[CROP_WIDTHS.length - 1]) cropWidths.push(cropW);
       for (const target of cropWidths) {
         const out = variant(file, `4x5-${target}`);
         if (fresh(out, file)) continue;

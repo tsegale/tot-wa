@@ -18,6 +18,11 @@ function loadManifest() {
   return manifest;
 }
 
+// The 4:5 hero crop serves phones and any portrait screen (tablets held
+// upright), where a 16:9 image would be upscaled to fill a tall hero.
+const MOBILE_MEDIA = '(max-width: 767px), (orientation: portrait)';
+const DESKTOP_MEDIA = '(min-width: 768px) and (orientation: landscape)';
+
 const variantPath = (src, suffix) => src.replace(/\.[a-z]+$/i, `-${suffix}.webp`);
 const keyFor = (src) => src.replace(/^assets\/images\//, '');
 
@@ -79,10 +84,10 @@ function preloadLinks(src) {
   if (!desktop) return `<link rel="preload" as="image" href="${src}" fetchpriority="high">`;
   const links = [];
   if (mobile) {
-    links.push(`<link rel="preload" as="image" imagesrcset="${mobile.srcset}" imagesizes="100vw" media="(max-width: 767px)" fetchpriority="high">`);
+    links.push(`<link rel="preload" as="image" imagesrcset="${mobile.srcset}" imagesizes="100vw" media="${MOBILE_MEDIA}" fetchpriority="high">`);
   }
-  links.push(`<link rel="preload" as="image" imagesrcset="${desktop.srcset}" imagesizes="100vw"${mobile ? ' media="(min-width: 768px)"' : ''} fetchpriority="high">`);
+  links.push(`<link rel="preload" as="image" imagesrcset="${desktop.srcset}" imagesizes="100vw"${mobile ? ` media="${DESKTOP_MEDIA}"` : ''} fetchpriority="high">`);
   return links.join('\n');
 }
 
-module.exports = { processImages, preloadLinks, srcsetFor, loadManifest };
+module.exports = { MOBILE_MEDIA, processImages, preloadLinks, srcsetFor, loadManifest };

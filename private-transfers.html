@@ -25,8 +25,8 @@
 <link rel="icon" type="image/png" href="assets/images/tot-wa-icon.png">
 <!-- /@head -->
 <!-- @hero-preload src="assets/images/private-transfers/hero.webp" -->
-<link rel="preload" as="image" imagesrcset="assets/images/private-transfers/hero-4x5-640.webp 640w" imagesizes="100vw" media="(max-width: 767px)" fetchpriority="high">
-<link rel="preload" as="image" imagesrcset="assets/images/private-transfers/hero-160.webp 160w, assets/images/private-transfers/hero-640.webp 640w, assets/images/private-transfers/hero-1024.webp 1024w, assets/images/private-transfers/hero-1600.webp 1600w, assets/images/private-transfers/hero.webp 2000w" imagesizes="100vw" media="(min-width: 768px)" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="assets/images/private-transfers/hero-4x5-640.webp 640w, assets/images/private-transfers/hero-4x5-900.webp 900w" imagesizes="100vw" media="(max-width: 767px), (orientation: portrait)" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="assets/images/private-transfers/hero-160.webp 160w, assets/images/private-transfers/hero-640.webp 640w, assets/images/private-transfers/hero-1024.webp 1024w, assets/images/private-transfers/hero-1600.webp 1600w, assets/images/private-transfers/hero.webp 2000w" imagesizes="100vw" media="(min-width: 768px) and (orientation: landscape)" fetchpriority="high">
 <!-- /@hero-preload -->
 </head>
 <body>
@@ -128,7 +128,7 @@
 <section class="page-hero surface-dark">
   <div class="page-hero-photo">
     <picture>
-      <source media="(max-width: 767px)" data-src="assets/images/private-transfers/hero.webp" data-crop="4x5" sizes="100vw" srcset="assets/images/private-transfers/hero-4x5-640.webp 640w" width="640" height="800">
+      <source media="(max-width: 767px), (orientation: portrait)" data-src="assets/images/private-transfers/hero.webp" data-crop="4x5" sizes="100vw" srcset="assets/images/private-transfers/hero-4x5-640.webp 640w, assets/images/private-transfers/hero-4x5-900.webp 900w" width="900" height="1125">
       <img src="assets/images/private-transfers/hero.webp" alt="Tot Wa private transfer vehicle picking up a guest on a Windhoek street" sizes="100vw" fetchpriority="high" loading="eager" decoding="async" srcset="assets/images/private-transfers/hero-160.webp 160w, assets/images/private-transfers/hero-640.webp 640w, assets/images/private-transfers/hero-1024.webp 1024w, assets/images/private-transfers/hero-1600.webp 1600w, assets/images/private-transfers/hero.webp 2000w" width="2000" height="1125">
     </picture>
   </div>
