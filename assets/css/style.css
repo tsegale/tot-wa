@@ -268,7 +268,7 @@ section{padding:var(--section-pad) max(var(--gutter), calc((100% - var(--max)) /
 .nav-dropdown-menu a:hover{background:var(--sand-100);}
 .nav-dropdown-menu a[aria-current="page"]{color:var(--green-700); font-weight:600;}
 .nav-dropdown-menu :focus-visible{outline-color:var(--green-700);}
-@media (min-width:1081px){
+@media (min-width:861px){
   .nav-dropdown:hover .nav-dropdown-menu,
   .nav-dropdown:focus-within .nav-dropdown-menu,
   .nav-dropdown.open .nav-dropdown-menu{
@@ -515,8 +515,12 @@ section{padding:var(--section-pad) max(var(--gutter), calc((100% - var(--max)) /
 .ticket-head .field-label{margin:0;}
 .ticket-tabs{display:inline-flex; gap:0.25rem; padding:0.25rem; background:var(--sand-100); border-radius:var(--r-card); flex-wrap:wrap;}
 .ticket-form{display:grid; grid-template-columns:1fr auto; gap:1rem 1.25rem; align-items:end;}
-.ticket-form .form-grid{grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));}
+.ticket-form .form-grid{grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));}
 .ticket-form > .btn{min-width:180px;}
+/* Home transfer tab: Pickup gets room for "Hosea Kutako Intl. (HKIA)" in full */
+@media (min-width:861px){
+  .ticket-form .form-grid.transfer-grid{grid-template-columns:minmax(232px, 1.4fr) repeat(auto-fit, minmax(130px, 1fr));}
+}
 /* Options sit before the submit button in DOM and reading order: fields
    take the full first row, options and the button share the second. */
 .ticket-form:has(.form-extras) .form-grid{grid-column:1 / -1;}
