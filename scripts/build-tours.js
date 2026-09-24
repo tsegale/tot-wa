@@ -324,7 +324,7 @@ function build() {
     const html = TEMPLATE
       .replace(/\{\{key\}\}/g, pkg.key)
       .replace(/\{\{name\}\}/g, esc(pkg.name))
-      .replace(/\{\{route\}\}/g, esc(pkg.route));
+      .replace(/\{\{route\}\}/g, site.routeHtml(pkg.route));
     const out = `${GENERATED_NOTE}\n${processImages(site.applyBlocks(html, page))}`;
     fs.writeFileSync(path.join(ROOT, page.file), out);
     written.push(page.file);

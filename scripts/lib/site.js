@@ -75,6 +75,11 @@ const tourHref = (pkg) => (pkg.href ? pkg.href : `tour-${pkg.slug}.html`);
 const esc = (value) => String(value)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+// Route strings ("Windhoek → Sossusvlei → return") with each arrow shown
+// visually but read aloud as "to".
+const routeHtml = (route) => esc(route)
+  .replace(/\s*→\s*/g,' <span aria-hidden="true">→</span><span class="visually-hidden">to</span> ');
+
 const pageUrl = (file) => (file === 'index.html' ? `${ORIGIN}/` : `${ORIGIN}/${file}`);
 // og cards are named after their source path, e.g. og/airport-transfers-hero.jpg
 function ogName(src) {
@@ -337,6 +342,6 @@ function applyBlocks(html, page) {
 
 module.exports = {
   ROOT, PAGES, BRAND, ORIGIN, TOUR_PACKAGES, TRANSFER_DATA, SITE_CONFIG,
-  tourPackages, tourHref, esc, icon, pageUrl, ogName,
+  tourPackages, tourHref, esc, routeHtml, icon, pageUrl, ogName,
   renderHead, renderHeader, renderFooter, renderScripts, applyBlocks, registerBlock,
 };

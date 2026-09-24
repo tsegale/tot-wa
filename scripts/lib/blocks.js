@@ -5,7 +5,7 @@
 const site = require('./site');
 const { preloadLinks } = require('./images');
 
-const { esc, icon, tourPackages, tourHref, TRANSFER_DATA, SITE_CONFIG, BRAND, ORIGIN } = site;
+const { esc, routeHtml, icon, tourPackages, tourHref, TRANSFER_DATA, SITE_CONFIG, BRAND, ORIGIN } = site;
 
 const DIRECTION_LABEL = { south: 'Southbound', north: 'Northbound', loop: 'Full loop', custom: 'Custom' };
 
@@ -27,7 +27,7 @@ function routeCard(pkg, { sizes }) {
     ? '<svg class="route-motif" aria-hidden="true" focusable="false"><use href="#routeMotif"/></svg>'
     : `<img src="${pkg.image.src}" alt="" sizes="${sizes}" loading="lazy" decoding="async">${photoCredit(pkg.image, { linked: false })}`;
   const chip = pkg.duration ? `${pkg.duration} days` : 'Custom';
-  const routeLine = custom ? 'Your dates, your pace, your stops.' : esc(pkg.route);
+  const routeLine = custom ? 'Your dates, your pace, your stops.' : routeHtml(pkg.route);
   const price = custom
     ? '<p class="route-price">Quote on request</p>'
     : `<p class="route-price" data-tour="${pkg.key}"></p>`;
@@ -64,7 +64,7 @@ function packageCard(pkg) {
     : `<p class="package-price" data-tour="${pkg.key}"></p>`;
   const route = custom
     ? "Tell us your dates, your pace and what you actually want to see. We'll draft a route around it, using the same stops or a different mix entirely."
-    : esc(pkg.route);
+    : routeHtml(pkg.route);
   return `
     <article class="package-card card-hover${custom ? ' custom surface-dark' : ''}" data-direction="${pkg.direction}" data-length="${length}">
       <div class="photo-slot">${media}</div>

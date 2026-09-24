@@ -16,7 +16,9 @@
   if (statsGrid && data && data.rating != null && data.count != null) {
     const stat = document.createElement('div');
     stat.className = 'stat';
-    stat.innerHTML = `<div class="stat-num">${TotWa.escapeHtml(data.rating)}</div>
+    stat.setAttribute('role', 'group');
+    stat.setAttribute('aria-label', `${data.rating} average rating on ${data.platform}, from ${data.count} reviews`);
+    stat.innerHTML = `<div class="stat-num" aria-hidden="true">${TotWa.escapeHtml(data.rating)}</div>
       <div class="stat-label">Average rating on ${TotWa.escapeHtml(data.platform)},<br>from ${TotWa.escapeHtml(data.count)} reviews</div>`;
     statsGrid.appendChild(stat);
   }
