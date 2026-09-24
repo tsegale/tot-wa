@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- @head --><!-- /@head -->
+<!-- @tour-preload --><!-- /@tour-preload -->
+<!-- @tour-jsonld --><!-- /@tour-jsonld -->
+</head>
+<body class="has-tour-bar" data-tour-key="{{key}}">
+<!-- @header --><!-- /@header -->
+
+<main id="main">
+<div class="tour-wrap">
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tours-safaris.html">Tours &amp; safaris</a></li>
+      <li><span aria-current="page">{{name}}</span></li>
+    </ol>
+  </nav>
+
+  <!-- @tour-gallery --><!-- /@tour-gallery -->
+
+  <div class="tour-title">
+    <h1>{{name}}</h1>
+    <p class="package-route">{{route}}</p>
+  </div>
+
+  <!-- @tour-glance --><!-- /@tour-glance -->
+
+  <div class="tour-body">
+    <div class="tour-content">
+      <!-- @tour-route --><!-- /@tour-route -->
+      <!-- @tour-highlights --><!-- /@tour-highlights -->
+      <!-- @tour-checklist --><!-- /@tour-checklist -->
+      <!-- @tour-good-to-know --><!-- /@tour-good-to-know -->
+    </div>
+    <aside class="tour-aside" aria-labelledby="panelTitle">
+      <div class="booking-panel" id="bookingPanel">
+        <h2 id="panelTitle">Check dates</h2>
+        <!-- @tour-form --><!-- /@tour-form -->
+        <ul class="trust-chips" aria-label="Why book with us">
+          <li class="chip"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>NTB registered</li>
+          <li class="chip"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Passengers insured</li>
+          <li class="chip"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Namibian-owned</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<section class="section-alt" aria-labelledby="relatedTitle">
+  <div class="section-head">
+    <h2 id="relatedTitle">Other routes.</h2>
+  </div>
+  <ul class="carousel-track static related-routes" tabindex="0" aria-label="Other tour routes">
+    <!-- @route-cards exclude="{{key}}" sizes="(max-width: 640px) 90vw, (max-width: 1080px) 45vw, 22vw" --><!-- /@route-cards -->
+  </ul>
+  <p class="footnote grid-footnote" data-price-footnote>Guide prices per person sharing, confirmed at booking.</p>
+</section>
+</main>
+
+<div class="tour-bar" id="tourBar">
+  <div class="tour-bar-price">
+    <span data-tour="{{key}}" data-price-format="bar"></span>
+  </div>
+  <button type="button" class="btn btn-primary" id="openSheet" aria-controls="tourSheet">Select dates</button>
+</div>
+
+<dialog class="dialog dialog-sheet" id="tourSheet" aria-labelledby="sheetTitle">
+  <div class="sheet-handle" id="sheetHandle"><span></span></div>
+  <div class="dialog-inner">
+    <div class="dialog-head">
+      <h2 id="sheetTitle">Check dates</h2>
+      <button type="button" class="icon-btn" data-dialog-close aria-label="Close"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div id="sheetBody"></div>
+  </div>
+</dialog>
+
+<!-- @footer --><!-- /@footer -->
+<!-- @scripts --><!-- /@scripts -->
+<script src="assets/js/tour.js"></script>
+</body>
+</html>
