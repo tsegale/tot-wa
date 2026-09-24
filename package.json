@@ -5,7 +5,13 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "build": "npm run build:tours && npm run build:pages",
+    "build:images": "node scripts/build-images.js",
+    "build:tours": "node scripts/build-tours.js",
+    "build:pages": "node scripts/build-pages.js",
+    "serve": "http-server . -p 8080 -c-1 -s",
+    "test:ui": "playwright test"
   },
   "repository": {
     "type": "git",
@@ -23,5 +29,11 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "resend": "^6.22.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "http-server": "^14.1.1",
+    "sharp": "^0.34.5"
   }
 }
