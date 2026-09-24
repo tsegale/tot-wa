@@ -1,45 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- @head -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms and Conditions | Tot Wa Tours &amp; Safaris</title>
+<title>Terms and conditions | Tot Wa Tours &amp; Transfers</title>
 <meta name="description" content="Tot Wa Tours and Transfers cc terms and conditions: definitions, payment, cancellation, liability and booking policies.">
+<link rel="canonical" href="https://tot-wa.com/terms.html">
+<meta property="og:site_name" content="Tot Wa Tours &amp; Transfers">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Terms and conditions | Tot Wa Tours &amp; Transfers">
+<meta property="og:description" content="Tot Wa Tours and Transfers cc terms and conditions: definitions, payment, cancellation, liability and booking policies.">
+<meta property="og:url" content="https://tot-wa.com/terms.html">
+<meta property="og:image" content="https://tot-wa.com/assets/images/og/home-hero.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;800&family=Inter:wght@500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/AbelPro-Bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/AbelPro-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="icon" type="image/png" href="assets/images/tot-wa-icon.png">
+<!-- /@head -->
 </head>
 <body>
+<!-- @header -->
+<a class="skip-link" href="#main">Skip to content</a>
 
-<header id="siteHeader">
-  <a href="index.html" class="logo" aria-label="Tot Wa Tours &amp; Transfers">
-    <img src="assets/images/tot-wa-icon.png" alt="" class="logo-icon">
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="routeMotif" viewBox="0 0 800 500">
+    <g fill="none" stroke="currentColor" stroke-width="1.4">
+      <path d="M-20,120 Q200,80 400,130 T820,110"/>
+      <path d="M-20,230 Q220,190 420,240 T820,220" stroke-opacity="0.7"/>
+      <path d="M-20,340 Q240,300 440,345 T820,330" stroke-opacity="0.45"/>
+      <path d="M40,420 C180,300 320,300 400,180 S560,60 720,90" stroke-dasharray="2 10" stroke-width="1.6"/>
+      <circle cx="40" cy="420" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="400" cy="180" r="4" fill="currentColor" stroke="none"/>
+      <circle cx="720" cy="90" r="5" fill="currentColor" stroke="none"/>
+    </g>
+  </symbol>
+</svg>
+<header id="siteHeader" class="site-header on-light">
+  <a href="index.html" class="logo" aria-label="Tot Wa Tours &amp; Transfers, home">
+    <img src="assets/images/tot-wa-icon.png" alt="" class="logo-icon" width="439" height="568">
     <span class="logo-text"><span class="logo-tot">TOT</span><span class="logo-wa">WA</span></span>
   </a>
-  <nav class="links" id="navLinks">
-    <a href="index.html">Home</a>
-    <div class="nav-dropdown" id="transfersDropdown">
-      <button type="button" class="nav-dropdown-toggle" id="transfersToggle" aria-haspopup="true" aria-expanded="false">
-        Transfers
-        <svg class="nav-dropdown-caret" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l5 5 5-5"/></svg>
-      </button>
-      <div class="nav-dropdown-menu" role="menu" aria-label="Transfers">
-        <a href="airport-transfers.html" role="menuitem">Airport Transfers</a>
-        <a href="private-transfers.html" role="menuitem">Private Transfers</a>
+  <nav class="site-nav" aria-label="Main">
+    <div class="nav-drawer" id="navLinks">
+      <div class="drawer-head">
+        <button type="button" class="icon-btn drawer-close" id="menuClose" aria-label="Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="nav-dropdown" data-disclosure>
+          <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="transfersMenu">
+            Transfers <svg class="icon nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" id="transfersMenu">
+            <ul>
+              <li><a href="airport-transfers.html">Airport transfers</a></li>
+              <li><a href="private-transfers.html">Private transfers</a></li>
+              <li><a href="contact.html?service=event-transfer">Event transfers</a></li>
+              <li><a href="contact.html?service=vehicle-rental">Vehicle rental</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-dropdown nav-mega" data-disclosure>
+          <button type="button" class="nav-dropdown-toggle" aria-expanded="false" aria-controls="toursMenu">
+            Tours &amp; safaris <svg class="icon nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu mega-panel" id="toursMenu">
+            <ul class="mega-list">
+            <li><a class="mega-item" href="tour-5-day-southbound.html">
+              <img class="mega-thumb" src="assets/images/tours-safaris/sossusvlei-dunes.webp" alt="" width="64" height="80" sizes="64px" loading="lazy" decoding="async" srcset="assets/images/tours-safaris/sossusvlei-dunes-160.webp 160w, assets/images/tours-safaris/sossusvlei-dunes-640.webp 640w, assets/images/tours-safaris/sossusvlei-dunes-1024.webp 1024w, assets/images/tours-safaris/sossusvlei-dunes.webp 1400w">
+              <span class="mega-text"><span class="mega-name">5-Day Southbound</span><span class="mega-meta">5 days<span class="mega-price" data-tour="5-day-south" data-price-format="compact"></span></span></span>
+            </a></li>
+            <li><a class="mega-item" href="tour-5-day-northbound.html">
+              <img class="mega-thumb" src="assets/images/tours-safaris/etosha-game-drive.webp" alt="" width="64" height="80" sizes="64px" loading="lazy" decoding="async" srcset="assets/images/tours-safaris/etosha-game-drive-160.webp 160w, assets/images/tours-safaris/etosha-game-drive-640.webp 640w, assets/images/tours-safaris/etosha-game-drive-1024.webp 1024w, assets/images/tours-safaris/etosha-game-drive.webp 1400w">
+              <span class="mega-text"><span class="mega-name">5-Day Northbound</span><span class="mega-meta">5 days<span class="mega-price" data-tour="5-day-north" data-price-format="compact"></span></span></span>
+            </a></li>
+            <li><a class="mega-item" href="tour-7-day-southbound.html">
+              <img class="mega-thumb" src="assets/images/tours-safaris/walvis-bay-coast.webp" alt="" width="64" height="80" sizes="64px" loading="lazy" decoding="async" srcset="assets/images/tours-safaris/walvis-bay-coast-160.webp 160w, assets/images/tours-safaris/walvis-bay-coast-640.webp 640w, assets/images/tours-safaris/walvis-bay-coast-1024.webp 1024w, assets/images/tours-safaris/walvis-bay-coast.webp 1400w">
+              <span class="mega-text"><span class="mega-name">7-Day Southbound</span><span class="mega-meta">7 days<span class="mega-price" data-tour="7-day-south" data-price-format="compact"></span></span></span>
+            </a></li>
+            <li><a class="mega-item" href="tour-7-day-northbound.html">
+              <img class="mega-thumb" src="assets/images/tours-safaris/twyfelfontein-rock-art.webp" alt="" width="64" height="80" sizes="64px" loading="lazy" decoding="async" srcset="assets/images/tours-safaris/twyfelfontein-rock-art-160.webp 160w, assets/images/tours-safaris/twyfelfontein-rock-art-640.webp 640w, assets/images/tours-safaris/twyfelfontein-rock-art-1024.webp 1024w, assets/images/tours-safaris/twyfelfontein-rock-art.webp 1400w">
+              <span class="mega-text"><span class="mega-name">7-Day Northbound</span><span class="mega-meta">7 days<span class="mega-price" data-tour="7-day-north" data-price-format="compact"></span></span></span>
+            </a></li>
+            <li><a class="mega-item" href="tour-10-day-namibias-best.html">
+              <img class="mega-thumb" src="assets/images/tours-safaris/swakopmund-seafront.webp" alt="" width="64" height="80" sizes="64px" loading="lazy" decoding="async" srcset="assets/images/tours-safaris/swakopmund-seafront-160.webp 160w, assets/images/tours-safaris/swakopmund-seafront-640.webp 640w, assets/images/tours-safaris/swakopmund-seafront-1024.webp 1024w, assets/images/tours-safaris/swakopmund-seafront.webp 1400w">
+              <span class="mega-text"><span class="mega-name">10-Day Namibia's Best</span><span class="mega-meta">10 days<span class="mega-price" data-tour="10-day-best" data-price-format="compact"></span></span></span>
+            </a></li>
+            <li><a class="mega-item" href="contact.html?service=custom-tour">
+              <span class="mega-thumb mega-thumb-custom"><svg class="route-motif-inline" aria-hidden="true" focusable="false"><use href="#routeMotif"/></svg></span>
+              <span class="mega-text"><span class="mega-name">Build your own</span><span class="mega-meta">Your dates, your pace</span></span>
+            </a></li>
+            </ul>
+            <a class="mega-all" href="tours-safaris.html">All tours &amp; safaris</a>
+          </div>
+        </li>
+        <li><a href="activities.html">Activities</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary nav-cta" data-open-booking>Book now</a>
+      <div class="drawer-contact">
+        <a href="tel:+264816008766"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h3.5l1.5 4-2 1.5a11 11 0 0 0 6.5 6.5l1.5-2 4 1.5V19a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg><span>Call</span></a>
+        <a href="https://wa.me/264816008766" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8L4 20z"/><path d="M9.2 8.6c.2-.5.5-.6.8-.6h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .4-.1.6l-.5.6c.5 1 1.4 1.9 2.4 2.4l.6-.5c.2-.1.4-.2.6-.1l1.5.6c.3.1.4.3.4.5v.5c0 .3-.1.6-.6.8-1.8.8-6.6-3.2-6.7-6.7z"/></svg><span>WhatsApp</span></a>
+        <a href="mailto:info@tot-wa.com"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5L12 13l8.5-6.5"/></svg><span>Email</span></a>
       </div>
     </div>
-    <a href="tours-safaris.html">Tours &amp; Safaris</a>
-    <a href="activities.html">Activities</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="#book" class="btn btn-primary">Book now</a>
   </nav>
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+  <div class="nav-backdrop" id="navBackdrop" hidden></div>
+  <button type="button" class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
   </button>
 </header>
+<!-- /@header -->
+
+<main id="main">
 
 <section class="legal-hero">
   <h1>Terms and Conditions</h1>
@@ -62,7 +143,7 @@
 
     <p>For the avoidance of doubt, these terms and conditions are applicable to all requests, quotations, offers, instructions, orders, order confirmations, agreements and other legal acts.</p>
 
-    <h2>Definitions</h2>
+    <h2 id="definitions">Definitions</h2>
     <p>Tot Wa provides the following services, please refer to definitions below for detail:</p>
     <ul>
       <li>Windhoek Airport transfers</li>
@@ -229,45 +310,72 @@
     <h2>17. Force majeure</h2>
     <p>Tot Wa cannot accept liability or pay compensation where performance of its contractual obligations is prevented or affected by circumstances amounting to force majeure, including war or threat of war, civil strife, natural or nuclear disaster, industrial dispute, terrorist activity, adverse weather conditions, fire, and similar events.</p>
 
+<h2 id="credits">Photo credits</h2>
+    <p>Most photographs on this site are Tot Wa's own. The images below are used under Creative Commons licences, which require this credit.</p>
+    <ul class="credits-list">
+      <li>Giraffe rock engraving, Twyfelfontein (Tours &amp; safaris, Activities): <a href="https://commons.wikimedia.org/wiki/File:Giraffe,_Twyfelfontein.jpg" target="_blank" rel="noopener">Schnobby / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+      <li>Himba homestead, Kunene (Activities): <a href="https://commons.wikimedia.org/wiki/File:Otjikandero_Himba_Orphan_Village-Habitations.jpg" target="_blank" rel="noopener">Ji-Elle / Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+    </ul>
+
 </section>
 
-<footer>
+</main>
+
+<!-- @footer -->
+<footer class="site-footer">
   <div class="footer-grid">
-    <div>
-      <div class="footer-logo" aria-label="Tot Wa Tours &amp; Transfers">
-        <img src="assets/images/tot-wa-icon.png" alt="" class="footer-logo-icon">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="assets/images/tot-wa-icon.png" alt="" class="footer-logo-icon" width="439" height="568">
         <span class="logo-text"><span class="logo-tot">TOT</span><span class="logo-wa">WA</span></span>
         <span class="footer-tagline">Tours &amp; Transfers</span>
       </div>
       <p>Namibian-run transfers and tours. Windhoek-based, country-wide.</p>
+      <p class="footer-trust"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg><span>NTB registered (TSO 01268). Every passenger insured.</span></p>
     </div>
     <div class="footer-col">
-      <h4>Explore</h4>
-      <a href="airport-transfers.html">Airport transfers</a>
-      <a href="private-transfers.html">Private transfers</a>
-      <a href="tours-safaris.html">Tours &amp; safaris</a>
-      <a href="activities.html">Activities</a>
+      <h2>Explore</h2>
+      <ul>
+        <li><a href="airport-transfers.html">Airport transfers</a></li>
+        <li><a href="private-transfers.html">Private transfers</a></li>
+        <li><a href="tours-safaris.html">Tours &amp; safaris</a></li>
+        <li><a href="activities.html">Activities</a></li>
+      </ul>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
-      <a href="about.html">About us</a>
-      <a href="contact.html">Contact</a>
-      <a href="terms.html">Terms &amp; conditions</a>
+      <h2>Company</h2>
+      <ul>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="terms.html">Terms &amp; conditions</a></li>
+        <li><a href="terms.html#credits">Photo credits</a></li>
+      </ul>
     </div>
     <div class="footer-col">
-      <h4>Get in touch</h4>
-      <a href="tel:+264816008766">+264 81 600 8766</a>
-      <a href="mailto:info@tot-wa.com">info@tot-wa.com</a>
-      <a href="https://wa.me/264816008766">WhatsApp us</a>
-      <address>P.O. Box 9332 Eros, Windhoek, Namibia</address>
+      <h2>Get in touch</h2>
+      <ul>
+        <li><a href="tel:+264816008766">+264 81 600 8766</a></li>
+        <li><a href="mailto:info@tot-wa.com">info@tot-wa.com</a></li>
+        <li><a href="https://wa.me/264816008766" target="_blank" rel="noopener">WhatsApp us</a></li>
+      </ul>
+      <address>14 Lenie Street, Ludwigsdorf, Windhoek<br>P.O. Box 9332 Eros, Windhoek, Namibia</address>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; <span id="year"></span> Tot Wa Tours &amp; Safaris</span>
+    <span>&copy; <span id="year">2026</span> Tot Wa Tours &amp; Transfers</span>
     <span>Windhoek, Namibia</span>
   </div>
 </footer>
-
+<!-- /@footer -->
+<!-- @scripts -->
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/site-config.js"></script>
+<script src="assets/js/tours-data.js"></script>
+<script src="assets/js/tours-pricing.js"></script>
+<script src="assets/js/transfers-data.js"></script>
+<script src="assets/js/transfers.js"></script>
+<script src="assets/js/booking.js"></script>
 <script src="assets/js/main.js"></script>
+<!-- /@scripts -->
 </body>
 </html>
