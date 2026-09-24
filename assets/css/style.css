@@ -215,7 +215,8 @@ section{padding:var(--section-pad) max(var(--gutter), calc((100% - var(--max)) /
 }
 .site-header.scrolled :focus-visible{outline-color:var(--green-700);}
 .site-header.scrolled::before{
-  background:rgb(250 248 244 / .78);
+  /* .9 rather than .78: at .78 over the dark hero, --ink-600 nav text drops to 4.1:1 */
+  background:rgb(250 248 244 / .9);
   -webkit-backdrop-filter:blur(14px) saturate(140%); backdrop-filter:blur(14px) saturate(140%);
 }
 .site-header.is-hidden{transform:translateY(-100%);}
