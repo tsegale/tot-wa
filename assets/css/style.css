@@ -1111,6 +1111,25 @@ section.tour-section{padding:0;}
   .stat{padding-left:0; border-left:none;}
   .stats-grid{grid-template-columns:1fr 1fr;}
 }
+/* Phones: a compact copy panel anchored to the bottom of the hero, so most
+   of the photo stays visible above it. Ledes are two sentences at most. */
+@media (max-width:640px){
+  .hero-kicker{display:none;}
+  .hero{padding-top:var(--header-h);}
+  .hero-top{
+    min-height:calc(100svh - var(--header-h) - 7rem);
+    align-items:flex-end; padding-bottom:1.25rem;
+  }
+  .page-hero{align-items:flex-end; min-height:min(72svh, 600px); padding-bottom:1.25rem;}
+  /* .46 on phones: the smaller panel sits over brighter parts of the photos */
+  .hero-panel{padding:1rem 1.1rem 1.1rem; background:rgb(30 29 26 / .46);}
+  .hero h1, .page-hero h1{margin-bottom:0.6rem;}
+  .hero-lede, .page-hero p{font-size:1rem; line-height:1.55;}
+  .hero-lede{margin-bottom:1rem;}
+  .page-hero .hero-actions{margin-top:1rem;}
+  .hero-actions{gap:0.5rem;}
+  .hero-actions .btn{flex:1 1 auto; padding-inline:1rem;}
+}
 
 /* ---------------------------------------------------------------- reduced motion */
 @media (prefers-reduced-motion:reduce){
