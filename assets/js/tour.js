@@ -74,6 +74,15 @@
   form.addEventListener('change', updateWhatsapp);
   setPax(pax, false);
 
+  // EasyOTA packages: not enabled for Tot Wa (the supplier sells transfers
+  // only), so "Check availability" keeps the WhatsApp / inquiry handoff. If
+  // EasyOTA enables a Package product, this panel can deep-link into its
+  // package search instead of calling handOff:
+  //   https://book.tot-wa.com/search/packages?fromDate=YYYY-MM-DD&rooms=N&adults=N
+  // with rooms defaulting to Math.ceil(adults / 2), gated on
+  // BOOKING_CONFIG.easyota.enabled. Param names are taken from EasyOTA plugin
+  // 1.77 source; confirm with EasyOTA. Tracked in CONTENT-TODO.md.
+
   // Departure-day check, only when the route has fixed departure weekdays.
   if (Array.isArray(pkg.departureWeekdays) && pkg.departureWeekdays.length) {
     TotWa.booking.addValidator(form, (container) => {
