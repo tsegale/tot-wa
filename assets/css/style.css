@@ -436,6 +436,7 @@ section{padding:var(--section-pad) max(var(--gutter), calc((100% - var(--max)) /
 .easyota-skeleton{display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:1rem 1.25rem;}
 .easyota-skeleton span{height:44px; border-radius:var(--r-input);}
 .easyota-talk{font-size:0.875rem; color:var(--ink-600);}
+.easyota-talk .text-link{color:var(--green-700);} /* the home ticket sits inside the dark hero */
 
 /* ---------------------------------------------------------------- forms */
 .field-group, .form-group{display:flex; flex-direction:column; gap:0.35rem; min-width:0; position:relative;}

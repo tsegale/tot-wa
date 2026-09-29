@@ -170,6 +170,7 @@ const BOOKING_SERVICES = {
   // replaces (data-easyota-fallback): our own form, which stays in charge
   // until the widget is ready and comes back whenever the widget fails.
   const EASYOTA_MOUNT_ID = 'easyota-form-plugin-react';
+  const EASYOTA_THEME = 'assets/css/easyota-theme.css';
   const EASYOTA_WARNING = 'EasyOTA widget unavailable, using fallback form';
   const easyota = { status: 'idle' }; // idle, checking, loading, ready, skipped, failed
 
@@ -256,6 +257,7 @@ const BOOKING_SERVICES = {
     easyota.status = 'loading';
     pinEasyotaHost();
     addStylesheet(config.styles);
+    addStylesheet(EASYOTA_THEME);
     slot.innerHTML = `
       <div class="skeleton easyota-skeleton" aria-hidden="true"><span></span><span></span><span></span></div>
       <div id="${EASYOTA_MOUNT_ID}" hidden></div>
