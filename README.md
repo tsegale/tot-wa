@@ -96,6 +96,16 @@ the page, visible without JavaScript.
 **Kill switch.** Set `BOOKING_CONFIG.easyota.enabled` to `false` in
 `assets/js/booking.js` to never load it.
 
+**Production gate.** On `easyota.productionHosts` the widget also needs
+`BOOKING_CONFIG.easyota.productionEnabled` set to `true`, on top of every check above.
+It ships `false`: staging and preview hosts load the widget automatically, production
+keeps our forms. Flip it only after a successful end-to-end test on staging:
+
+1. A transfer search submits from the widget.
+2. The redirect lands on `https://book.tot-wa.com/search/{id}`.
+3. The pickup date and time on that page display correctly in Namibian time
+   (the widget sends the chosen time with a `Z` suffix, so check it is not shifted).
+
 **Updating the vendor files.** Copy `build/static/js/main.<hash>.js` and
 `build/css/easyota-form-styles.css` from the new plugin zip into
 `assets/vendor/easyota/`, delete the old bundle, update `easyota.script` in

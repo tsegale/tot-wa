@@ -99,3 +99,7 @@ site.
 - [ ] Ask whether there is a newer plugin build than 1.77 (January 2024).
 - [ ] Optionally, set the supplier cosmetics colors in the EasyOTA admin to match the
   brand. Our CSS overrides them anyway.
+- [ ] **Turn the widget on for tot-wa.com.** After an end-to-end test on the staging
+  preview (search submits, the redirect lands on `book.tot-wa.com/search/{id}`, the
+  pickup date and time show correctly in Namibian time), set `productionEnabled: true`
+  in `assets/js/booking.js`. Until then tot-wa.com keeps its own forms.

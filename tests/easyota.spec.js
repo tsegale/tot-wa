@@ -288,6 +288,38 @@ test.describe('EasyOTA widget: fallback', () => {
     await expect.poll(() => reasons).toEqual([expect.not.stringContaining('disappeared')]);
   });
 
+  // Serves the local site as https://tot-wa.com, optionally rewriting
+  // booking.js, so the production gate sees a production hostname.
+  async function asProduction(page, rewrite = (js) => js) {
+    await page.route('https://tot-wa.com/**', async (route) => {
+      const url = route.request().url().replace('https://tot-wa.com', 'http://localhost:4173');
+      const response = await route.fetch({ url });
+      if (!url.includes('/assets/js/booking.js')) return route.fulfill({ response });
+      return route.fulfill({ response, body: rewrite(await response.text()) });
+    });
+  }
+
+  test('production gate: tot-wa.com keeps our form while productionEnabled is false', async ({ page }) => {
+    const calls = await mockEasyota(page, healthyApi);
+    await asProduction(page);
+    await page.goto('https://tot-wa.com/index.html');
+    await page.waitForLoadState('networkidle');
+    expect(await page.evaluate(() => BOOKING_CONFIG.easyota.productionEnabled)).toBe(false);
+    expect(calls).toEqual([]);
+    await expect(page.locator('#home-transfer')).toBeVisible();
+    await expect(page.locator(WIDGET)).toHaveCount(0);
+  });
+
+  test('production gate: tot-wa.com mounts the widget once productionEnabled is true', async ({ page }) => {
+    await mockEasyota(page, healthyApi);
+    await asProduction(page, (js) => js.replace('productionEnabled: false,', 'productionEnabled: true,'));
+    await page.goto('https://tot-wa.com/index.html');
+    await expect(page.locator(WIDGET_FORM)).toBeVisible();
+    await expect(page.locator('#home-transfer')).toBeHidden();
+    // Production relies on the hostname lookup, so no fixedHost is added.
+    expect(page.url()).toBe('https://tot-wa.com/index.html');
+  });
+
   test('kill switch: easyota.enabled false never calls the API', async ({ page }) => {
     const calls = await mockEasyota(page, healthyApi);
     await page.route('**/assets/js/booking.js', async (route) => {

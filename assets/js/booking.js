@@ -6,6 +6,10 @@
 const BOOKING_CONFIG = {
   easyota: {
     enabled: true,
+    // Staging and preview hosts load the widget automatically. On
+    // productionHosts it also needs this, flipped after an end-to-end test
+    // on staging (see README, "EasyOTA widget").
+    productionEnabled: false,
     host: 'book.tot-wa.com',
     productionHosts: ['tot-wa.com', 'www.tot-wa.com'],
     script: 'assets/vendor/easyota/main.03c19ad4.js',
@@ -225,6 +229,7 @@ const BOOKING_SERVICES = {
   const loadEasyOTA = async (slot) => {
     const config = BOOKING_CONFIG.easyota;
     if (!config.enabled || !slot || easyota.status !== 'idle' || document.getElementById(EASYOTA_MOUNT_ID)) return false;
+    if (config.productionHosts.includes(window.location.hostname) && !config.productionEnabled) return false;
     const fallback = document.getElementById(slot.dataset.easyotaFallback);
     if (!fallback) return false;
     easyota.status = 'checking';
