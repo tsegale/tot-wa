@@ -428,6 +428,15 @@ section{padding:var(--section-pad) max(var(--gutter), calc((100% - var(--max)) /
 }
 @keyframes pulse{from{opacity:1;} to{opacity:.45;}}
 
+/* EasyOTA widget slot: our skeleton while the widget loads, then the widget
+   (themed in easyota-theme.css) and a human fallback line under it. */
+.easyota-slot{display:grid; gap:0.75rem; min-width:0;}
+.easyota-slot[hidden]{display:none;}
+.easyota-slot:focus{outline:none;}
+.easyota-skeleton{display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:1rem 1.25rem;}
+.easyota-skeleton span{height:44px; border-radius:var(--r-input);}
+.easyota-talk{font-size:0.875rem; color:var(--ink-600);}
+
 /* ---------------------------------------------------------------- forms */
 .field-group, .form-group{display:flex; flex-direction:column; gap:0.35rem; min-width:0; position:relative;}
 .field-group > label, .form-group > label, .field-label{

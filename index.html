@@ -181,10 +181,14 @@
       <div class="ticket-head">
         <span class="field-label" id="ticketLabel">I need a</span>
         <div class="ticket-tabs" data-tabs aria-labelledby="ticketLabel">
-          <button type="button" class="tab-btn active" data-target="home-transfer">Transfer</button>
+          <button type="button" class="tab-btn active" data-target="home-transfer-panel">Transfer</button>
           <button type="button" class="tab-btn" data-target="home-tour">Tour &amp; safari</button>
         </div>
       </div>
+      <!-- The EasyOTA widget mounts in the slot once book.tot-wa.com can take
+           a search; until then, and whenever it fails, the form below stays. -->
+      <div id="home-transfer-panel">
+      <div class="easyota-slot" data-easyota-slot data-easyota-load="eager" data-easyota-fallback="home-transfer" hidden></div>
       <form class="ticket-form" id="home-transfer" data-booking-form="transfer" data-service="auto-transfer" action="contact.html" novalidate>
         <div class="form-grid transfer-grid">
           <div class="field-group">
@@ -219,6 +223,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Check availability</button>
       </form>
+      </div>
       <form class="ticket-form" id="home-tour" data-booking-form="tour" data-service="auto-tour" action="contact.html" novalidate hidden>
         <div class="form-grid">
           <div class="field-group span-2">
@@ -246,9 +251,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Check availability</button>
       </form>
-      <!-- EasyOTA: once BOOKING_CONFIG.easyotaUrl is set in assets/js/booking.js,
-           these forms open the book.tot-wa.com embed in a dialog instead of
-           the WhatsApp / inquiry choice. No markup change needed here. -->
     </div>
   </div>
 </section>

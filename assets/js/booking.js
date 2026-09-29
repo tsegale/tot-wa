@@ -163,6 +163,209 @@ const BOOKING_SERVICES = {
     TotWa.openDialog(dialog, { returnFocus });
   };
 
+  // ---- EasyOTA widget ----
+  // The vendored bundle renders into the first #easyota-form-plugin-react it
+  // finds, once, when the script is evaluated. So there is one mount and one
+  // attempt per page load. A slot ([data-easyota-slot]) names the element it
+  // replaces (data-easyota-fallback): our own form, which stays in charge
+  // until the widget is ready and comes back whenever the widget fails.
+  const EASYOTA_MOUNT_ID = 'easyota-form-plugin-react';
+  const EASYOTA_WARNING = 'EasyOTA widget unavailable, using fallback form';
+  const easyota = { status: 'idle' }; // idle, checking, loading, ready, skipped, failed
+
+  const easyotaApi = (path) => `https://${BOOKING_CONFIG.easyota.host}/api/${path}`;
+
+  const fetchJson = async (url) => {
+    const response = await fetch(url, { headers: { Accept: 'application/json' } });
+    if (!response.ok) throw new Error(`${url} returned ${response.status}`);
+    return response.json();
+  };
+
+  // True only when the supplier can take a transfer search. The pickup list
+  // comes from supplierlocations, and the widget's Transfer form also reads
+  // the supplier's own base location (locations[0] of the supplier record)
+  // the moment a pickup is chosen, throwing if it is missing. Both must exist.
+  const easyotaSupplierReady = async () => {
+    const supplier = await fetchJson(easyotaApi(`suppliers/${BOOKING_CONFIG.easyota.host}`));
+    const supplierId = supplier && supplier.cosmetics && supplier.cosmetics.supplierId;
+    if (!supplierId || !Array.isArray(supplier.locations) || !supplier.locations.length) return false;
+    const pickups = await fetchJson(easyotaApi(`supplierlocations/${encodeURIComponent(supplierId)}/true`));
+    return Array.isArray(pickups) && pickups.length > 0;
+  };
+
+  // The widget picks its supplier from the page hostname (book.<hostname>),
+  // and on localhost it falls back to EasyOTA's demo supplier. Anywhere other
+  // than tot-wa.com (GitHub Pages previews, local servers) we pin it to our
+  // supplier with ?fixedHost=. The bundle reads that once, while it is being
+  // evaluated, so this has to run before the script is injected.
+  const pinEasyotaHost = () => {
+    const { host, productionHosts } = BOOKING_CONFIG.easyota;
+    if (productionHosts.includes(window.location.hostname)) return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('fixedHost')) return;
+    params.set('fixedHost', host);
+    history.replaceState(history.state, '', `${window.location.pathname}?${params}${window.location.hash}`);
+  };
+
+  const addStylesheet = (href) => {
+    if (document.querySelector(`link[data-easyota-css="${href}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.dataset.easyotaCss = href;
+    document.head.appendChild(link);
+  };
+
+  const firstField = (root) => root && [...root.querySelectorAll('input:not([type="hidden"]), select, textarea')]
+    .find((field) => !field.disabled && !field.closest('[hidden]'));
+
+  const talkUrl = () => `https://wa.me/${BOOKING_CONFIG.whatsappNumber}?text=${encodeURIComponent("Hi Tot Wa, I'd like to talk through a transfer.")}`;
+
+  const loadEasyOTA = async (slot) => {
+    const config = BOOKING_CONFIG.easyota;
+    if (!config.enabled || !slot || easyota.status !== 'idle' || document.getElementById(EASYOTA_MOUNT_ID)) return false;
+    const fallback = document.getElementById(slot.dataset.easyotaFallback);
+    if (!fallback) return false;
+    easyota.status = 'checking';
+
+    // Someone who starts typing into our form while the supplier check runs
+    // keeps it: the widget never swaps in under them.
+    let engaged = false;
+    const markEngaged = () => { engaged = true; };
+    fallback.addEventListener('input', markEngaged);
+    let usable = false;
+    let checkError = null;
+    try {
+      usable = await easyotaSupplierReady();
+    } catch (error) {
+      checkError = error;
+    }
+    fallback.removeEventListener('input', markEngaged);
+    if (checkError) {
+      easyota.status = 'failed';
+      console.warn(EASYOTA_WARNING, checkError);
+      return false;
+    }
+    // An empty supplier is the expected state until EasyOTA finishes setup:
+    // keep our form without a warning.
+    if (!usable || engaged) {
+      easyota.status = 'skipped';
+      return false;
+    }
+
+    easyota.status = 'loading';
+    pinEasyotaHost();
+    addStylesheet(config.styles);
+    slot.innerHTML = `
+      <div class="skeleton easyota-skeleton" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div id="${EASYOTA_MOUNT_ID}" hidden></div>
+      <p class="easyota-talk">Prefer to talk it through? <a class="text-link" href="${talkUrl()}" target="_blank" rel="noopener">Message us on WhatsApp</a></p>`;
+    const skeleton = slot.querySelector('.easyota-skeleton');
+    const mount = document.getElementById(EASYOTA_MOUNT_ID);
+    const hadFocus = fallback.contains(document.activeElement);
+    slot.tabIndex = -1;
+    slot.hidden = false;
+    fallback.hidden = true;
+    if (hadFocus) slot.focus({ preventScroll: true });
+
+    const scriptName = config.script.split('/').pop();
+    let observer = null;
+    let timer = null;
+    let onError = null;
+
+    const stopWatching = () => {
+      if (observer) observer.disconnect();
+      clearTimeout(timer);
+      window.removeEventListener('error', onError);
+    };
+
+    return new Promise((resolve) => {
+      const fail = (reason) => {
+        if (easyota.status === 'failed') return;
+        const focusWasInside = slot.contains(document.activeElement);
+        easyota.status = 'failed';
+        stopWatching();
+        slot.replaceChildren();
+        slot.hidden = true;
+        slot.removeAttribute('tabindex');
+        fallback.hidden = false;
+        if (focusWasInside) {
+          const field = firstField(fallback);
+          if (field) field.focus();
+        }
+        console.warn(EASYOTA_WARNING, reason);
+        document.dispatchEvent(new CustomEvent('totwa:easyota', { detail: { ready: false } }));
+        resolve(false);
+      };
+
+      const ready = () => {
+        easyota.status = 'ready';
+        clearTimeout(timer);
+        skeleton.remove();
+        mount.hidden = false;
+        if (slot.contains(document.activeElement)) {
+          const field = firstField(mount);
+          if (field) field.focus();
+        }
+        document.dispatchEvent(new CustomEvent('totwa:easyota', { detail: { ready: true } }));
+        resolve(true);
+      };
+
+      // Before ready: wait for the form, or the widget's own error message.
+      // After ready: the bundle has no error boundary, so a render error
+      // unmounts the whole form. Losing .form-wrap means it broke.
+      observer = new MutationObserver(() => {
+        if (easyota.status === 'loading') {
+          if (mount.querySelector('.loading.error')) fail(new Error('widget could not load the supplier'));
+          else if (mount.querySelector('.easyota-form-plugin .form-wrap')) ready();
+        } else if (easyota.status === 'ready' && !mount.querySelector('.form-wrap')) {
+          fail(new Error('widget form disappeared after it was ready'));
+        }
+      });
+      observer.observe(mount, { childList: true, subtree: true });
+
+      // Errors thrown from the widget's event handlers leave the form on
+      // screen but broken (for example choosing a pickup with no supplier
+      // location), so any uncaught error from the bundle also restores ours.
+      onError = (event) => {
+        const stack = (event.error && event.error.stack) || '';
+        if ((event.filename || '').includes(scriptName) || stack.includes(scriptName)) {
+          fail(event.error || new Error(event.message));
+        }
+      };
+      window.addEventListener('error', onError);
+
+      timer = setTimeout(() => {
+        if (easyota.status === 'loading') fail(new Error(`widget not ready after ${config.loadTimeoutMs}ms`));
+      }, config.loadTimeoutMs);
+
+      const script = document.createElement('script');
+      script.src = config.script;
+      script.async = true;
+      script.addEventListener('error', () => fail(new Error(`${config.script} failed to load`)));
+      document.body.appendChild(script);
+    });
+  };
+
+  // Pages with their own slot load the widget without waiting for the
+  // booking dialog: eagerly above the fold (home), or as the booking
+  // section nears the viewport (transfer pages).
+  const autoLoadEasyOTA = () => {
+    const slot = document.querySelector('[data-easyota-slot][data-easyota-load]');
+    if (!slot || !BOOKING_CONFIG.easyota.enabled) return;
+    const target = slot.closest('section') || slot.parentElement;
+    if (slot.dataset.easyotaLoad !== 'visible' || !('IntersectionObserver' in window) || !target) {
+      loadEasyOTA(slot);
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      io.disconnect();
+      loadEasyOTA(slot);
+    }, { rootMargin: '600px 0px' });
+    io.observe(target);
+  };
+
   // ---- form wiring ----
   const validators = new WeakMap();
   const addValidator = (form, check) => {
@@ -194,10 +397,12 @@ const BOOKING_SERVICES = {
         <button type="button" class="icon-btn" data-dialog-close aria-label="Close">${TotWa.icons.close}</button>
       </div>
       <div class="dialog-tabs" data-tabs aria-label="Booking type">
-        <button type="button" class="tab-btn active" data-target="bd-transfer" data-tab="transfer">Transfer</button>
+        <button type="button" class="tab-btn active" data-target="bd-transfer-panel" data-tab="transfer">Transfer</button>
         <button type="button" class="tab-btn" data-target="bd-tour" data-tab="tour">Tour &amp; safari</button>
         <button type="button" class="tab-btn" data-target="bd-activity" data-tab="activity">Activity</button>
       </div>
+      <div class="dialog-panel" id="bd-transfer-panel">
+      <div class="easyota-slot" data-easyota-slot data-easyota-fallback="bd-transfer" hidden></div>
       <form class="dialog-form" id="bd-transfer" data-booking-form="transfer" data-service="auto-transfer" novalidate>
         <div class="form-grid">
           <div class="field-group">
@@ -232,6 +437,7 @@ const BOOKING_SERVICES = {
         </div>
         <button type="submit" class="btn btn-primary btn-block">Check availability</button>
       </form>
+      </div>
       <form class="dialog-form" id="bd-tour" data-booking-form="tour" data-service="auto-tour" novalidate hidden>
         <div class="form-grid">
           <div class="field-group span-2">
@@ -297,9 +503,11 @@ const BOOKING_SERVICES = {
       if (select) select.value = route;
     }
     TotWa.openDialog(dialog, { returnFocus: trigger });
-    const panel = dialog.querySelector('.dialog-form:not([hidden])');
-    const first = panel && panel.querySelector('input, select');
+    const first = firstField(dialog.querySelector('[role="tabpanel"]:not([hidden])'));
     if (first) first.focus();
+    // Pages that mount the widget in their own booking area keep it there;
+    // everywhere else the dialog hosts it, loaded on first open.
+    if (!document.querySelector('[data-easyota-load]')) loadEasyOTA(dialog.querySelector('[data-easyota-slot]'));
   };
 
   document.addEventListener('click', (e) => {
@@ -311,6 +519,9 @@ const BOOKING_SERVICES = {
 
   document.querySelectorAll('[data-booking-form]').forEach(bindForm);
   TotWa.setDateMins();
+  TotWa.loadEasyOTA = loadEasyOTA;
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', autoLoadEasyOTA);
+  else autoLoadEasyOTA();
 
   TotWa.booking = { handOff, readRequest, addValidator, bindForm, openBooking, summaryText, whatsappUrl, inquiryUrl, setBusy };
 })();
