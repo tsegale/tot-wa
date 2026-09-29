@@ -73,6 +73,8 @@ In `assets/js/transfers-data.js`.
 
 ## Booking
 
-- [ ] **EasyOTA embed.** When EasyOTA sends the booking URL, set `easyotaUrl` in
-  `assets/js/booking.js`. Until then every "Check availability" button offers
+- [ ] **EasyOTA widget.** The EasyOTA booking widget is vendored in
+  `assets/vendor/easyota/` and switched on by `easyota.enabled` in
+  `assets/js/booking.js`. It renders in the page, not in an iframe. Until
+  `book.tot-wa.com` serves a usable supplier, every "Check availability" button offers
   "Continue on WhatsApp" or "Send an inquiry".

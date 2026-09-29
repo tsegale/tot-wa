@@ -1,10 +1,17 @@
 // TOT WA: booking handoff. Every booking form on the site
-// ([data-booking-form]) is validated here, then handed off to EasyOTA once
-// it is configured, or to a WhatsApp / inquiry choice until then. The header
-// "Book now" buttons ([data-open-booking]) open one global booking dialog.
+// ([data-booking-form]) is validated here, then handed off to a WhatsApp /
+// inquiry choice. The header "Book now" buttons ([data-open-booking]) open
+// one global booking dialog.
 
 const BOOKING_CONFIG = {
-  easyotaUrl: null, // set to 'https://book.tot-wa.com/...' once EasyOTA sends the embed
+  easyota: {
+    enabled: true,
+    host: 'book.tot-wa.com',
+    productionHosts: ['tot-wa.com', 'www.tot-wa.com'],
+    script: 'assets/vendor/easyota/main.03c19ad4.js',
+    styles: 'assets/vendor/easyota/easyota-form-styles.css',
+    loadTimeoutMs: 8000,
+  },
   whatsappNumber: '264816008766',
   contactPage: 'contact.html',
 };
@@ -139,42 +146,8 @@ const BOOKING_SERVICES = {
       </div>`,
   });
 
-  const easyotaDialog = () => {
-    const dialog = TotWa.createDialog({
-      id: 'easyotaDialog',
-      className: 'dialog-frame',
-      labelledBy: 'easyotaTitle',
-      html: `
-        <div class="dialog-inner">
-          <div class="dialog-head">
-            <h2 id="easyotaTitle">Check availability</h2>
-            <button type="button" class="icon-btn" data-dialog-close aria-label="Close">${TotWa.icons.close}</button>
-          </div>
-          <div class="frame-wrap">
-            <div class="skeleton frame-skeleton" aria-hidden="true"><span></span><span></span><span></span></div>
-            <iframe title="Tot Wa online booking"></iframe>
-          </div>
-        </div>`,
-    });
-    return dialog;
-  };
-
   const handOff = (request, button) => {
     setBusy(button, true);
-    if (BOOKING_CONFIG.easyotaUrl) {
-      const dialog = easyotaDialog();
-      const frame = dialog.querySelector('iframe');
-      const skeleton = dialog.querySelector('.frame-skeleton');
-      skeleton.hidden = false;
-      frame.addEventListener('load', () => {
-        skeleton.hidden = true;
-        setBusy(button, false);
-      }, { once: true });
-      frame.src = BOOKING_CONFIG.easyotaUrl;
-      dialog.addEventListener('totwa:closed', () => setBusy(button, false), { once: true });
-      TotWa.openDialog(dialog, { returnFocus: button });
-      return;
-    }
     const dialog = handoffDialog();
     dialog.querySelector('[data-handoff="whatsapp"]').href = whatsappUrl(request);
     dialog.querySelector('[data-handoff="inquiry"]').href = inquiryUrl(request);
