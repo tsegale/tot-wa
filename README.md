@@ -27,6 +27,8 @@ assets/images/                photos, generated variants, og cards (credits in C
 assets/fonts/                 self-hosted Abel Pro web fonts
 scripts/                      build scripts (Node)
 tests/ui.spec.js              Playwright + axe UI checks
+tests/easyota.spec.js         EasyOTA widget checks against a mocked API
+assets/vendor/easyota/        EasyOTA booking widget, vendored unmodified (see below)
 server.js                     Express server: pages, assets/, sitemap, POST /api/contact
 CONTENT-TODO.md               content still needed from the client
 ```
@@ -61,9 +63,46 @@ then `npm run build`, whenever you add or replace a photo.
 
 ## Booking
 
-`assets/js/booking.js` validates every booking form. Until `BOOKING_CONFIG.easyotaUrl`
-is set, a valid form offers "Continue on WhatsApp" (prefilled message) or "Send an
-inquiry" (prefilled contact form). Once set, it opens the EasyOTA embed in a dialog.
+`assets/js/booking.js` validates every booking form. A valid form offers "Continue on
+WhatsApp" (prefilled message) or "Send an inquiry" (prefilled contact form).
+
+## EasyOTA widget
+
+Transfer searches can also run through EasyOTA's booking widget, which renders in the
+page (no iframe) and hands over with a full-page redirect to `book.tot-wa.com`. It
+mounts in three places: the Transfer tab of the home ticket, the booking area of the
+airport and private transfer pages, and the Transfer tab of the "Book now" dialog on
+every other page. Tours and activities keep the WhatsApp / inquiry handoff.
+
+**Supplier lookup.** The widget builds its API host from the page hostname: it strips
+`www.` and prefixes `book.`, so on `tot-wa.com` it reads
+`https://book.tot-wa.com/api/suppliers/book.tot-wa.com`. That record supplies the tabs,
+locations, settings and colors.
+
+**Staging.** On any host not listed in `easyota.productionHosts` (GitHub Pages,
+localhost), `booking.js` adds `?fixedHost=book.tot-wa.com` to the URL with
+`history.replaceState` before injecting the script, keeping other params and the hash.
+Without it the widget would look up `book.<preview host>`, or EasyOTA's demo supplier on
+localhost.
+
+**When it shows.** Before mounting, `booking.js` checks that the supplier record has a
+base location and that `/api/supplierlocations/<supplierId>/true` is not empty. If
+either is empty the widget never loads and our form stays, silently. If the API fails,
+the script fails, the widget shows its own error, nothing renders within
+`loadTimeoutMs`, or the widget breaks after it was ready (its form disappears or it
+throws), our form comes back and one `console.warn` is logged. Our forms are always in
+the page, visible without JavaScript.
+
+**Kill switch.** Set `BOOKING_CONFIG.easyota.enabled` to `false` in
+`assets/js/booking.js` to never load it.
+
+**Updating the vendor files.** Copy `build/static/js/main.<hash>.js` and
+`build/css/easyota-form-styles.css` from the new plugin zip into
+`assets/vendor/easyota/`, delete the old bundle, update `easyota.script` in
+`booking.js` and the `VERSION` file, then run `npm run test:ui`. Never edit the vendor
+files: all styling lives in `assets/css/easyota-theme.css`, where every selector is
+scoped to `#easyota-form-plugin-react`. Never commit the `.js.map` source map: it
+contains EasyOTA's proprietary source (`*.js.map` and `vendor-src/` are gitignored).
 
 ## Contact form
 
@@ -89,3 +128,12 @@ npm run test:ui
 Checks every page, including the generated tour pages, at 390, 820 and 1440 wide: no
 horizontal overflow, no serious or critical axe violations, every button leads somewhere,
 the mobile drawer, header contrast, a 13px minimum text size and no placeholder text.
+Third-party requests are blocked there, so the EasyOTA widget is always in its fallback
+state.
+
+`tests/easyota.spec.js` mocks `book.tot-wa.com/api` and runs the real vendored widget:
+it mounts and fits at the three widths, the theme overrides admin colors, the dialog and
+transfer-page slots work, and every fallback path (API error, empty locations, widget
+error, widget vanishing after it was ready, kill switch) restores our form. Its axe
+check fails only on issues outside the widget; issues inside it are attached to the
+test result as `easyota-widget-axe.json`.

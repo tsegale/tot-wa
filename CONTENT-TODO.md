@@ -73,8 +73,29 @@ In `assets/js/transfers-data.js`.
 
 ## Booking
 
-- [ ] **EasyOTA widget.** The EasyOTA booking widget is vendored in
-  `assets/vendor/easyota/` and switched on by `easyota.enabled` in
-  `assets/js/booking.js`. It renders in the page, not in an iframe. Until
-  `book.tot-wa.com` serves a usable supplier, every "Check availability" button offers
-  "Continue on WhatsApp" or "Send an inquiry".
+Every "Check availability" button offers "Continue on WhatsApp" or "Send an inquiry"
+until the EasyOTA widget can take a search. The widget turns itself on (see README,
+"EasyOTA widget") as soon as the checks below are true. Nothing needs changing on the
+site.
+
+## EasyOTA setup (Godfrey)
+
+- [ ] Confirm `book.tot-wa.com` is live, i.e.
+  `https://book.tot-wa.com/api/suppliers/book.tot-wa.com` returns supplier JSON.
+  As of 2026-09-29 it does, with CORS `*`.
+- [ ] Confirm which tabs (products) are enabled for Tot Wa. As of 2026-09-29: "Airport
+  Transfers" (Transfer) and "Private Transfers" (Car Hire). No Package or Experience.
+- [ ] **Set the supplier's base location.** The supplier record's `locations` list is
+  empty, while `/api/supplierlocations/<id>/true` already lists four pickups (Dordabis,
+  Eros Airport, Windhoek, Hosea Kutako International Airport). The widget's Transfer
+  form reads the base location the moment a pickup is chosen and throws without it, so
+  the site keeps its own forms until both lists are filled.
+- [ ] Confirm the API allows requests from `https://tot-wa.com` (CORS), and from the
+  GitHub Pages preview during testing.
+- [ ] Confirm the package search query parameters (`fromDate`, `rooms`, `adults`,
+  `children`, `infants`). Only needed if a Package product is enabled later: tour pages
+  and activities keep the WhatsApp / inquiry handoff until then (see the note in
+  `assets/js/tour.js`).
+- [ ] Ask whether there is a newer plugin build than 1.77 (January 2024).
+- [ ] Optionally, set the supplier cosmetics colors in the EasyOTA admin to match the
+  brand. Our CSS overrides them anyway.
