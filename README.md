@@ -106,13 +106,23 @@ keeps our forms. Flip it only after a successful end-to-end test on staging:
 3. The pickup date and time on that page display correctly in Namibian time
    (the widget sends the chosen time with a `Z` suffix, so check it is not shifted).
 
-**Updating the vendor files.** Copy `build/static/js/main.<hash>.js` and
-`build/css/easyota-form-styles.css` from the new plugin zip into
+**Vendored version.** EasyOTA Form Plugin 1.80, build `main.992a0d69` (see
+`assets/vendor/easyota/VERSION`). 1.80 adds a per-child age select to the travelers
+dropdown (driven by the supplier's `settings.minChildAge` and `settings.searchChildAge`),
+drops the infants option, and adds a vendor rule that removes the border from focused
+inputs, which `easyota-theme.css` overrides.
+
+**Updating the vendor files.** Keep the plugin zip in `vendor-src/` (gitignored). Copy
+only `build/static/js/main.<hash>.js` and `build/css/easyota-form-styles.css` into
 `assets/vendor/easyota/`, delete the old bundle, update `easyota.script` in
-`booking.js` and the `VERSION` file, then run `npm run test:ui`. Never edit the vendor
-files: all styling lives in `assets/css/easyota-theme.css`, where every selector is
-scoped to `#easyota-form-plugin-react`. Never commit the `.js.map` source map: it
-contains EasyOTA's proprietary source (`*.js.map` and `vendor-src/` are gitignored).
+`booking.js` and the `VERSION` file, then run `npm test`. Never copy
+`easyota-form-plugin.php` or `plugin-update-checker/`: the PHP file contains a
+hardcoded GitHub access token for EasyOTA's update checker. `npm test` starts with
+`npm run test:secrets`, which fails if any tracked file contains a GitHub token prefix.
+Never edit the vendor files: all styling lives in `assets/css/easyota-theme.css`, where
+every selector is scoped to `#easyota-form-plugin-react`. Never commit the `.js.map`
+source map: it contains EasyOTA's proprietary source (`*.js.map` and `vendor-src/` are
+gitignored).
 
 ## Contact form
 
@@ -132,7 +142,7 @@ actually send.
 
 ```
 npx playwright install chromium   # once
-npm run test:ui
+npm test                          # secret scan, then npm run test:ui
 ```
 
 Checks every page, including the generated tour pages, at 390, 820 and 1440 wide: no
@@ -143,7 +153,8 @@ state.
 
 `tests/easyota.spec.js` mocks `book.tot-wa.com/api` and runs the real vendored widget:
 it mounts and fits at the three widths, the theme overrides admin colors, the dialog and
-transfer-page slots work, and every fallback path (API error, empty locations, widget
+transfer-page slots work, the 1.80 child-age selects fit at 390 wide, focused fields
+keep their border, and every fallback path (API error, empty locations, widget
 error, widget vanishing after it was ready, kill switch) restores our form. Its axe
 check fails only on issues outside the widget; issues inside it are attached to the
 test result as `easyota-widget-axe.json`.

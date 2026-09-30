@@ -11,6 +11,8 @@
     "build:tours": "node scripts/build-tours.js",
     "build:pages": "node scripts/build-pages.js",
     "serve": "http-server . -p 8080 -c-1 -s",
+    "test": "npm run test:secrets && npm run test:ui",
+    "test:secrets": "node scripts/check-secrets.js",
     "test:ui": "playwright test"
   },
   "repository": {

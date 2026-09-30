@@ -12,7 +12,7 @@ const BOOKING_CONFIG = {
     productionEnabled: false,
     host: 'book.tot-wa.com',
     productionHosts: ['tot-wa.com', 'www.tot-wa.com'],
-    script: 'assets/vendor/easyota/main.03c19ad4.js',
+    script: 'assets/vendor/easyota/main.992a0d69.js',
     styles: 'assets/vendor/easyota/easyota-form-styles.css',
     loadTimeoutMs: 8000,
   },

@@ -96,7 +96,7 @@ site.
   `children`, `infants`). Only needed if a Package product is enabled later: tour pages
   and activities keep the WhatsApp / inquiry handoff until then (see the note in
   `assets/js/tour.js`).
-- [ ] Ask whether there is a newer plugin build than 1.77 (January 2024).
+- [x] Newer plugin build: 1.80 received on 2026-09-30 and vendored.
 - [ ] Optionally, set the supplier cosmetics colors in the EasyOTA admin to match the
   brand. Our CSS overrides them anyway.
 - [ ] **Turn the widget on for tot-wa.com.** After an end-to-end test on the staging

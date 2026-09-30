@@ -123,6 +123,8 @@
    flex: 1;
    padding: 0.5em 0 0;
    width: 100%;
+   border: none;
+   background: transparent;
 }
 .easyota-form-plugin .fields .field:last-of-type {
    border-top-right-radius: 0.4em;
@@ -370,6 +372,25 @@
    font-weight: 100;
 }
 
+.easyota-form-plugin .multi-items-select li.child-age {
+    display: inline-flex;
+    width: 50%;
+}
+.easyota-form-plugin .multi-items-select li.child-age .child-age-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+.easyota-form-plugin .multi-items-select li.child-age.odd {
+    justify-content: flex-end;
+}
+.easyota-form-plugin .multi-items-select li.child-age:not(.child-age-first-row) {
+    padding-top: 0;
+}
+.easyota-form-plugin .multi-items-select li.child-age .count {
+    gap: 0;
+}
+
 .easyota-form-plugin .multi-items-dropdown {
    display: none;
    box-shadow: 0 0 5px #8798ad;
@@ -535,6 +556,14 @@
    background: #ffffff;
    border-radius: 0.4em;
 }
+
+/*Custome sites*/
+.easyota-form-plugin input:focus:not([type="button"]):not([type="submit"]),
+.easyota-form-plugin textarea:focus,
+.easyota-form-plugin .elementor-field-textual:focus {
+   border: none;
+}
+/*End custom sites*/
 
 @media only screen and (max-width: 600px) {
    .easyota-form-plugin .fields .field:first-of-type {

@@ -37,13 +37,15 @@ const supplier = ({ locations = [LOCATION] } = {}) => ({
   }],
   productTypes: [],
   locations,
+  // 1.80 shape: children get an age select from minChildAge to
+  // searchChildAge; there is no infants option.
   settings: {
     defaultPickupLocation: null,
     showResidentOptions: false,
     allowChildren: true,
-    allowInfants: true,
+    minChildAge: 0,
+    searchChildAge: 12,
     maxChildAge: 12,
-    maxInfantAge: 2,
   },
 });
 
@@ -117,6 +119,63 @@ test.describe('EasyOTA widget: supplier available', () => {
       return { bg: style.backgroundColor, color: style.color };
     });
     expect(search).toEqual({ bg: 'rgb(158, 190, 51)', color: 'rgb(30, 29, 26)' });
+  });
+
+  test('travelers @ 390: adding a child shows a themed age select without overflow', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await mockEasyota(page, healthyApi);
+    await page.goto('/index.html');
+    await expect(page.locator(WIDGET_FORM)).toBeVisible();
+
+    await page.locator(`${WIDGET} .multi-items-select .select-trigger`).click();
+    const dropdown = page.locator(`${WIDGET} ul.multi-items-dropdown.show`);
+    await expect(dropdown).toBeVisible();
+    await expect(dropdown.locator('li', { hasText: /infant/i })).toHaveCount(0);
+    const children = dropdown.locator('li', { has: page.locator('input[name="children"]') });
+    await children.locator('button').last().click();
+
+    const age = dropdown.locator('li.child-age select');
+    await expect(age).toHaveCount(1);
+    await expect(age).toBeVisible();
+    await expect(dropdown.locator('li.child-age .description p')).toHaveText('Child 1 age');
+    await expect(age.locator('option:not([disabled])')).toHaveText(Array.from({ length: 13 }, (_, i) => `${i} yrs`));
+
+    const metrics = await age.evaluate((el) => {
+      const style = getComputedStyle(el);
+      const label = getComputedStyle(el.closest('li').querySelector('.description p'));
+      const list = el.closest('ul').getBoundingClientRect();
+      const box = el.getBoundingClientRect();
+      return {
+        height: box.height,
+        border: `${style.borderTopWidth} ${style.borderTopStyle}`,
+        radius: style.borderTopLeftRadius,
+        labelSize: label.fontSize,
+        inList: box.left >= list.left && box.right <= list.right,
+        onScreen: list.left >= 0 && list.right <= window.innerWidth,
+        pageOverflow: document.documentElement.scrollWidth - window.innerWidth,
+      };
+    });
+    const radius = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--r-input').trim());
+    expect(metrics.height).toBeGreaterThanOrEqual(44);
+    expect(metrics.border).toBe('1px solid');
+    expect(metrics.radius).toBe(radius);
+    expect(metrics.labelSize).toBe('13px');
+    expect(metrics.inList).toBe(true);
+    expect(metrics.onScreen).toBe(true);
+    expect(metrics.pageOverflow).toBeLessThanOrEqual(0);
+  });
+
+  test('focused widget fields keep their border despite the 1.80 vendor rule', async ({ page }) => {
+    await mockEasyota(page, healthyApi);
+    await page.goto('/index.html');
+    await expect(page.locator(WIDGET_FORM)).toBeVisible();
+    const field = page.locator(`${WIDGET} .fields .field > label > input`).first();
+    await field.focus();
+    const focused = await field.evaluate((el) => {
+      const style = getComputedStyle(el);
+      return { border: `${style.borderTopWidth} ${style.borderTopStyle}`, outline: `${style.outlineWidth} ${style.outlineStyle}` };
+    });
+    expect(focused).toEqual({ border: '1px solid', outline: '2px solid' });
   });
 
   test('pages without their own slot mount the widget in the booking dialog', async ({ page }) => {
