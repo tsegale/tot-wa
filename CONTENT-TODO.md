@@ -54,8 +54,13 @@ All in `assets/js/tours-data.js`, one entry per package.
 In `assets/js/transfers-data.js`.
 
 - [ ] **Airport fares.** `fares.windhoekAirport.hkia` and `.eros` (N$ per vehicle), then
-  set `fareConfirmed`. Until then the drop-off field says "Windhoek airport transfer.
-  Fixed fare, confirmed when you book." and the fares table stays hidden.
+  set `fareConfirmed`. One fare per airport covers every Windhoek suburb, matching
+  EasyOTA's single Windhoek location. Until then the drop-off field says "Windhoek
+  airport transfer. Fixed fare, confirmed when you book." and the fares table stays
+  hidden.
+- [ ] **Dordabis fare (optional).** Dordabis is bookable in EasyOTA, so the drop-off
+  field treats it as an airport transfer, not an outbound one. It says "Fare confirmed
+  when you book." until a Dordabis fare is added to the site.
 - [ ] **Outbound fares.** `fares.outbound`. Until then outbound drop-offs say "We'll
   quote it for you."
 - [ ] **Fleet capacity.** `fleet[].seats` and `fleet[].bags` for the 4x4 Double Cab,

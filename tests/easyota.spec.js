@@ -14,6 +14,8 @@ const WIDGET = '#easyota-form-plugin-react';
 const WIDGET_FORM = `${WIDGET} .easyota-form-plugin .form-wrap`;
 // The line under every widget that sends one-way trips to our own form.
 const ONE_WAY = '.easyota-slot a[href="private-transfers.html#book"]';
+// Shown above the widget on the home Transfer tab and the airport page.
+const AREAS_NOTE = "Airport transfers run between Hosea Kutako or Eros and Windhoek or Dordabis. You'll add your exact address in the booking notes.";
 
 const LOCATION = {
   id: 'sl-eros',
@@ -89,6 +91,7 @@ test.describe('EasyOTA widget: supplier available', () => {
       await expect(page.locator('.easyota-skeleton')).toHaveCount(0);
       await expect(page.locator('.easyota-talk a[href^="https://wa.me/"]')).toHaveAttribute('href', /^https:\/\/wa\.me\/264816008766\?text=/);
       await expect(page.locator(ONE_WAY)).toBeVisible();
+      await expect(page.locator('#book .easyota-note')).toHaveText(AREAS_NOTE);
 
       // Off tot-wa.com the widget is pinned to our supplier, keeping other
       // params and the hash; the bundle then fetches book.tot-wa.com itself.
@@ -193,6 +196,7 @@ test.describe('EasyOTA widget: supplier available', () => {
     await expect(dialog.locator(WIDGET_FORM)).toBeVisible();
     await expect(dialog.locator('#bd-transfer')).toBeHidden();
     await expect(dialog.locator(ONE_WAY)).toHaveText('Plan a private transfer');
+    await expect(dialog.locator('.easyota-note')).toHaveCount(0);
     await dialog.locator('#bd-tour-tab').click();
     await expect(dialog.locator('#bd-tour')).toBeVisible();
   });
@@ -203,6 +207,7 @@ test.describe('EasyOTA widget: supplier available', () => {
     await expect(page.locator(`#book ${WIDGET_FORM}`)).toBeVisible();
     await expect(page.locator('#airport-booking-forms')).toBeHidden();
     await expect(page.locator(`#book ${ONE_WAY}`)).toBeVisible();
+    await expect(page.locator('#book .easyota-note')).toHaveText(AREAS_NOTE);
   });
 
   test('private transfers page keeps its own form, dialog included', async ({ page }) => {

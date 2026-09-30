@@ -307,6 +307,28 @@ test.describe('transfer booking options', () => {
   }
 });
 
+test.describe('transfer fare line', () => {
+  test('Windhoek suburbs share one fare, Dordabis is bookable, elsewhere is quoted', async ({ page }) => {
+    await isolate(page);
+    await page.goto('/airport-transfers.html');
+    const input = page.locator('#at-to');
+    const fare = page.locator('#at-to-fare');
+
+    await input.fill('Klein Windhoek');
+    await expect(fare).toContainText('Windhoek airport transfer.');
+
+    await input.fill('dordabis');
+    await expect(fare).toContainText('Dordabis airport transfer.');
+    await expect(fare).not.toContainText('outbound');
+
+    await input.fill('Dord');
+    await expect(page.locator('#at-to-list [role="option"]', { hasText: 'Dordabis' })).toHaveCount(1);
+
+    await input.fill('Rehoboth');
+    await expect(fare).toContainText("Outside Windhoek suburbs, this is an outbound transfer. We'll quote it for you.");
+  });
+});
+
 test.describe('tour route maps', () => {
   const TOUR_PAGES = PAGES.filter((f) => f.startsWith('tour-'));
   for (const file of TOUR_PAGES) {

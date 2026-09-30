@@ -1,6 +1,11 @@
 // TOT WA: transfer data. Fares and fleet capacities are null until the
 // client confirms them; the UI hides or softens anything missing. See
 // CONTENT-TODO.md.
+//
+// EasyOTA books airport transfers between HKIA or Eros and Windhoek or
+// Dordabis only. Every Windhoek suburb shares one flat airport fare (the
+// guest gives the exact address in the booking notes), so the suburb list
+// and fare line are information for the guest, not a price lookup.
 
 const TRANSFER_DATA = {
   airports: [
@@ -24,7 +29,11 @@ const TRANSFER_DATA = {
     Okuyarangava: 'Okuryangava',
     'Southern Industrial Area': 'Southern Industrial',
   },
+  // Outside Windhoek but bookable in EasyOTA as an airport transfer
+  // destination, so never labelled as an outbound transfer.
+  bookableAreas: ['Dordabis'],
   fares: {
+    // One fare per airport, per vehicle, shared by every Windhoek suburb.
     windhoekAirport: { hkia: null, eros: null, currency: 'NAD', per: 'vehicle' },
     outbound: null,
   },

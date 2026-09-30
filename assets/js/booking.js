@@ -266,7 +266,11 @@ const BOOKING_SERVICES = {
     pinEasyotaHost();
     addStylesheet(config.styles);
     addStylesheet(EASYOTA_THEME);
+    // An optional note (data-easyota-note) sits above the widget, e.g. which
+    // areas EasyOTA can book.
+    const note = slot.dataset.easyotaNote;
     slot.innerHTML = `
+      ${note ? `<p class="easyota-note">${TotWa.escapeHtml(note)}</p>` : ''}
       <div class="skeleton easyota-skeleton" aria-hidden="true"><span></span><span></span><span></span></div>
       <div id="${EASYOTA_MOUNT_ID}" hidden></div>
       <p class="easyota-talk">One-way private or cross-border trip? <a class="text-link" href="private-transfers.html#book">Plan a private transfer</a></p>

@@ -8,7 +8,13 @@
 
   const suburbs = TRANSFER_DATA.windhoekSuburbs;
   const aliases = TRANSFER_DATA.suburbAliases || {};
+  const bookableAreas = TRANSFER_DATA.bookableAreas || [];
   const AIRPORT_RE = /airport|hkia|hosea kutako/i;
+
+  const bookableArea = (text) => {
+    const needle = text.trim().toLowerCase();
+    return bookableAreas.find((area) => area.toLowerCase() === needle) || null;
+  };
 
   const canonicalSuburb = (text) => {
     const needle = text.trim().toLowerCase();
@@ -22,7 +28,7 @@
   const matches = (text) => {
     const needle = text.trim().toLowerCase();
     if (!needle) return [];
-    const pool = [...suburbs, ...Object.keys(aliases)];
+    const pool = [...suburbs, ...Object.keys(aliases), ...bookableAreas];
     const starts = pool.filter((s) => s.toLowerCase().startsWith(needle));
     const contains = pool.filter((s) => !s.toLowerCase().startsWith(needle) && s.toLowerCase().includes(needle));
     const seen = new Set();
@@ -60,6 +66,8 @@
         : '<strong>Windhoek airport transfer.</strong> Fixed fare, confirmed when you book.';
       return `${priced} ${link}`;
     }
+    const area = bookableArea(value);
+    if (area) return `<strong>${TotWa.escapeHtml(area)} airport transfer.</strong> Fare confirmed when you book.`;
     if (value.length < 3) return link;
     return `Outside Windhoek suburbs, this is an outbound transfer. We'll quote it for you. ${link}`;
   };
@@ -81,7 +89,7 @@
     list.id = listId;
     list.className = 'combo-list';
     list.setAttribute('role', 'listbox');
-    list.setAttribute('aria-label', 'Windhoek suburbs');
+    list.setAttribute('aria-label', 'Windhoek suburbs and other drop-off areas');
     list.hidden = true;
     input.insertAdjacentElement('afterend', list);
 
