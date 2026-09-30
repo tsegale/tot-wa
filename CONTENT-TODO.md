@@ -99,11 +99,18 @@ site.
   As of 2026-09-29 it does, with CORS `*`.
 - [ ] Confirm which tabs (products) are enabled for Tot Wa. As of 2026-09-29: "Airport
   Transfers" (Transfer) and "Private Transfers" (Car Hire). No Package or Experience.
-- [ ] **Set the supplier's base location.** The supplier record's `locations` list is
-  empty, while `/api/supplierlocations/<id>/true` already lists four pickups (Dordabis,
-  Eros Airport, Windhoek, Hosea Kutako International Airport). The widget's Transfer
-  form reads the base location the moment a pickup is chosen and throws without it, so
-  the site keeps its own forms until both lists are filled.
+- [x] **Set the supplier's base location.** Done as of 2026-09-30: the supplier record
+  has "Tot Wa Tours and Tranfers" as its base location, and choosing a pickup in the
+  widget no longer throws.
+- [ ] **Base location in the pickup list.** The base location "Tot Wa Tours and
+  Tranfers" (misspelled, missing the "s" in "Transfers") is also listed as a pickup,
+  next to Dordabis, Eros Airport, Hosea Kutako International Airport and Windhoek. Guests
+  can pick it. Remove it from the pickup locations, or at least fix the spelling.
+- [ ] **Child-age select has no label (plugin 1.80).** In the travelers dropdown, each
+  child's age select sits next to a "Child 1 age" paragraph instead of a `<label>`, so
+  screen readers announce it without a name. Ask for a `<label>` (or `aria-label`) on
+  each select in the next plugin build. The site cannot fix this: the widget markup is
+  EasyOTA's.
 - [ ] Confirm the API allows requests from `https://tot-wa.com` (CORS), and from the
   GitHub Pages preview during testing.
 - [ ] Confirm the package search query parameters (`fromDate`, `rooms`, `adults`,
