@@ -223,9 +223,10 @@
     <h2 id="bookTitle">Book a private transfer.</h2>
     <p>Tell us the route, we'll confirm the vehicle and driver.</p>
   </div>
-  <div class="ticket">
-    <div class="easyota-slot" data-easyota-slot data-easyota-load="visible" data-easyota-fallback="private-booking-forms" hidden></div>
-    <div id="private-booking-forms">
+  <!-- No EasyOTA widget here: its Private Transfers product needs a return date,
+       and this page sells one-way and cross-border trips. data-easyota-off also
+       keeps the Book now dialog on our own form on this page. -->
+  <div class="ticket" data-easyota-off>
     <div class="ticket-head">
       <span class="field-label" id="routeTypeLabel">Route type</span>
       <div class="ticket-tabs" data-tabs aria-labelledby="routeTypeLabel">
@@ -305,7 +306,6 @@
       </div>
       <button type="submit" class="btn btn-primary">Check availability</button>
     </form>
-    </div>
   </div>
 </section>
 

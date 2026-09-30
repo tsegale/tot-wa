@@ -71,8 +71,13 @@ WhatsApp" (prefilled message) or "Send an inquiry" (prefilled contact form).
 Transfer searches can also run through EasyOTA's booking widget, which renders in the
 page (no iframe) and hands over with a full-page redirect to `book.tot-wa.com`. It
 mounts in three places: the Transfer tab of the home ticket, the booking area of the
-airport and private transfer pages, and the Transfer tab of the "Book now" dialog on
-every other page. Tours and activities keep the WhatsApp / inquiry handoff.
+airport transfers page, and the Transfer tab of the "Book now" dialog on every other
+page. Each mount carries a line sending one-way and cross-border trips to
+`private-transfers.html#book`. Tours and activities keep the WhatsApp / inquiry handoff.
+
+The private transfers page never mounts it, not even in the dialog
+(`data-easyota-off` on its ticket): EasyOTA's "Private Transfers" tab is a Car Hire
+product that needs a return date, and that page sells one-way and cross-border trips.
 
 **Supplier lookup.** The widget builds its API host from the page hostname: it strips
 `www.` and prefixes `book.`, so on `tot-wa.com` it reads

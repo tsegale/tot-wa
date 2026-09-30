@@ -230,6 +230,9 @@ const BOOKING_SERVICES = {
     const config = BOOKING_CONFIG.easyota;
     if (!config.enabled || !slot || easyota.status !== 'idle' || document.getElementById(EASYOTA_MOUNT_ID)) return false;
     if (config.productionHosts.includes(window.location.hostname) && !config.productionEnabled) return false;
+    // Pages that sell trips the widget cannot book (one-way private
+    // transfers) opt out entirely, dialog included.
+    if (document.querySelector('[data-easyota-off]')) return false;
     const fallback = document.getElementById(slot.dataset.easyotaFallback);
     if (!fallback) return false;
     easyota.status = 'checking';
@@ -266,6 +269,7 @@ const BOOKING_SERVICES = {
     slot.innerHTML = `
       <div class="skeleton easyota-skeleton" aria-hidden="true"><span></span><span></span><span></span></div>
       <div id="${EASYOTA_MOUNT_ID}" hidden></div>
+      <p class="easyota-talk">One-way private or cross-border trip? <a class="text-link" href="private-transfers.html#book">Plan a private transfer</a></p>
       <p class="easyota-talk">Prefer to talk it through? <a class="text-link" href="${talkUrl()}" target="_blank" rel="noopener">Message us on WhatsApp</a></p>`;
     const skeleton = slot.querySelector('.easyota-skeleton');
     const mount = document.getElementById(EASYOTA_MOUNT_ID);

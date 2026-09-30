@@ -78,6 +78,15 @@ until the EasyOTA widget can take a search. The widget turns itself on (see READ
 "EasyOTA widget") as soon as the checks below are true. Nothing needs changing on the
 site.
 
+- [ ] **EasyOTA's "Private Transfers" tab.** Godfrey confirmed it is a Car Hire product
+  that needs a return date, so it cannot book one-way trips. Decide whether to (a) ask
+  EasyOTA to hide that tab, or (b) keep it, labelled as return trips only. Until then
+  the private transfers page keeps its own form (WhatsApp / inquiry), and every widget
+  sends one-way and cross-border trips there.
+- [ ] **One-way routes and fares in EasyOTA (optional).** If you want EasyOTA to take
+  one-way bookings through its Airport Transfers tab later, supply the one-way routes
+  and their fares so Godfrey can set them up.
+
 ## EasyOTA setup (Godfrey)
 
 - [ ] Confirm `book.tot-wa.com` is live, i.e.

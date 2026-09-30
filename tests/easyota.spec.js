@@ -12,6 +12,8 @@ const VIEWPORTS = [
 ];
 const WIDGET = '#easyota-form-plugin-react';
 const WIDGET_FORM = `${WIDGET} .easyota-form-plugin .form-wrap`;
+// The line under every widget that sends one-way trips to our own form.
+const ONE_WAY = '.easyota-slot a[href="private-transfers.html#book"]';
 
 const LOCATION = {
   id: 'sl-eros',
@@ -85,7 +87,8 @@ test.describe('EasyOTA widget: supplier available', () => {
       await expect(page.locator(WIDGET_FORM)).toBeVisible();
       await expect(page.locator('#home-transfer')).toBeHidden();
       await expect(page.locator('.easyota-skeleton')).toHaveCount(0);
-      await expect(page.locator('.easyota-talk a')).toHaveAttribute('href', /^https:\/\/wa\.me\/264816008766\?text=/);
+      await expect(page.locator('.easyota-talk a[href^="https://wa.me/"]')).toHaveAttribute('href', /^https:\/\/wa\.me\/264816008766\?text=/);
+      await expect(page.locator(ONE_WAY)).toBeVisible();
 
       // Off tot-wa.com the widget is pinned to our supplier, keeping other
       // params and the hash; the bundle then fetches book.tot-wa.com itself.
@@ -169,13 +172,16 @@ test.describe('EasyOTA widget: supplier available', () => {
     await mockEasyota(page, healthyApi);
     await page.goto('/index.html');
     await expect(page.locator(WIDGET_FORM)).toBeVisible();
-    const field = page.locator(`${WIDGET} .fields .field > label > input`).first();
-    await field.focus();
-    const focused = await field.evaluate((el) => {
+    // The widget can re-render while it settles, replacing the node, so focus
+    // and read in one step and retry until they agree.
+    await expect.poll(() => page.evaluate((sel) => {
+      const el = document.querySelector(sel);
+      if (!el) return null;
+      el.focus();
+      if (document.activeElement !== el) return null;
       const style = getComputedStyle(el);
       return { border: `${style.borderTopWidth} ${style.borderTopStyle}`, outline: `${style.outlineWidth} ${style.outlineStyle}` };
-    });
-    expect(focused).toEqual({ border: '1px solid', outline: '2px solid' });
+    }, `${WIDGET} .fields .field > label > input`)).toEqual({ border: '1px solid', outline: '2px solid' });
   });
 
   test('pages without their own slot mount the widget in the booking dialog', async ({ page }) => {
@@ -186,15 +192,40 @@ test.describe('EasyOTA widget: supplier available', () => {
     const dialog = page.locator('#bookingDialog');
     await expect(dialog.locator(WIDGET_FORM)).toBeVisible();
     await expect(dialog.locator('#bd-transfer')).toBeHidden();
+    await expect(dialog.locator(ONE_WAY)).toHaveText('Plan a private transfer');
     await dialog.locator('#bd-tour-tab').click();
     await expect(dialog.locator('#bd-tour')).toBeVisible();
   });
 
-  test('transfer pages mount the widget in their booking area', async ({ page }) => {
+  test('airport transfers page mounts the widget in its booking area', async ({ page }) => {
     await mockEasyota(page, healthyApi);
     await page.goto('/airport-transfers.html#book');
     await expect(page.locator(`#book ${WIDGET_FORM}`)).toBeVisible();
     await expect(page.locator('#airport-booking-forms')).toBeHidden();
+    await expect(page.locator(`#book ${ONE_WAY}`)).toBeVisible();
+  });
+
+  test('private transfers page keeps its own form, dialog included', async ({ page }) => {
+    // EasyOTA's Private Transfers product needs a return date; this page
+    // sells one-way and cross-border trips.
+    const calls = await mockEasyota(page, healthyApi);
+    // No #book hash: the header hides on scroll, and the dialog opens from it.
+    await page.goto('/private-transfers.html');
+    await expect(page.locator('#book [data-easyota-slot]')).toHaveCount(0);
+
+    await page.locator('.site-header [data-open-booking]').first().click();
+    const dialog = page.locator('#bookingDialog');
+    await expect(dialog.locator('#bd-transfer')).toBeVisible();
+    await page.waitForLoadState('networkidle');
+    await expect(page.locator(WIDGET)).toHaveCount(0);
+    expect(calls).toEqual([]);
+
+    await dialog.locator('[data-dialog-close]').click();
+    await page.locator('#fields-domestic').scrollIntoViewIfNeeded();
+    await page.waitForLoadState('networkidle');
+    await expect(page.locator('#fields-domestic')).toBeVisible();
+    await expect(page.locator(WIDGET)).toHaveCount(0);
+    expect(calls).toEqual([]);
   });
 
   test('axe: zero serious or critical outside the widget; widget issues reported', async ({ page }, testInfo) => {
